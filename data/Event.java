@@ -38,6 +38,7 @@ public class Event {
 
     @SerializedName("related_events")
     public List<RelatedEvent> relatedEvents;
+    @SerializedName("seg_text")
     public String segText;
     public String title;
     public List<URL> urls;

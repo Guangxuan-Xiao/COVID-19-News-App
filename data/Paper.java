@@ -1,3 +1,5 @@
+import com.google.gson.annotations.SerializedName;
+
 import java.net.URL;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class Paper {
     }
     public String title;
     public String content;
+    @SerializedName("seg_text")
     public String segText;
     public String date;
     public String time;
