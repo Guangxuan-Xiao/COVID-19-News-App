@@ -1,0 +1,140 @@
+Paper{
+title='Mathematical Model with Social Distancing Parameter for Early Estimation of COVID-19 Spread', 
+content='COVID-19 is well known to everyone in the world. It has spread around the world. No vaccine or antiviral treatment is available till now. COVID-19 patients are increasing day by day. All countries have adopted social distancing as a preventive measure to reduce spread. It becomes necessary to estimate the number of peoples going to be affected with COVID-19 in advance so that necessary arrangements can be done. Mathematical models are used to provide early disease estimation based on limited parameters. In the present manuscript, a novel mathematical model with a social distancing parameter has been proposed to provide early COVID-19 spread estimation. The model has been validated with real data set. It has been observed that the proposed model is more accurate in spread estimation.', 
+seg_text='mathemat model social distanc paramet earli estim covid - 19 spread covid - 19 well known everyon world . It ha spread around world . No vaccin antivir treatment avail till . covid - 19 patient increas day day . countri adopt social distanc prevent measur reduc spread . It becom necessari estim number peopl go affect covid - 19 advanc necessari arrang done . mathemat model use provid earli diseas estim base limit paramet . In present manuscript , novel mathemat model social distanc paramet ha propos provid earli covid - 19 spread estim . model ha valid real data set . It ha observ propos model accur spread estim .', 
+date='Tue, 28 Apr 2020 16:00:00 GMT', 
+time='2020/04/29', 
+authors=[Author{
+name='Saroj Kumar Chandra', 
+id='null'
+}, Author{
+name='Avaneesh Singh', 
+id='null'
+}, Author{
+name='Manish Kumar Bajpai', 
+id='563179c245cedb3399e18e2c'
+}], 
+doi='10.1101/2020.04.30.20086611', 
+pdf=https://static.aminer.cn/upload/pdf/369/189/275/5f074ac29e795e1a9f4aee6c_0.pdf, 
+urls=[https://www.medrxiv.org/content/medrxiv/early/2020/05/05/2020.04.30.20086611.full.pdf, https://app.dimensions.ai/details/publication/pub.1127387728]
+}
+Paper{
+title='Importance of Interaction Structure and Stochasticity for Epidemic Spreading: A COVID-19 Case Study', 
+content='In the recent COVID-19 pandemic, computer simulations are used to predict the evolution of the virus propagation and to evaluate the prospective effectiveness of non-pharmaceutical interventions. As such, the corresponding mathematical models and their simulations are central tools to guide political decision-making. Typically, ODE-based models are considered, in which fractions of infected and healthy individuals change deterministically and continuously over time. In this work, we translate an ODE-based COVID-19 spreading model from literature to a stochastic multi-agent system and use a contact network to mimic complex interaction structures. We observe a large dependency of the epidemic&#x27;s dynamics on the structure of the underlying contact graph, which is not adequately captured by existing ODE-models. For instance, existence of super-spreaders leads to a higher infection peak but a lower death toll compared to interaction structures without super-spreaders. Overall, we observe that the interaction structure has a crucial impact on the spreading dynamics, which exceeds the effects of other parameters such as the basic reproduction number R0. We conclude that deterministic models fitted to COVID-19 outbreak data have limited predictive power or may even lead to wrong conclusions while stochastic models taking interaction structure into account offer different and probably more realistic epidemiological insights.', 
+seg_text='import interact structur stochast epidem spread : A covid - 19 case studi In recent covid - 19 pandem , comput simul use predict evolut viru propag evalu prospect effect non - pharmaceut intervent . As , correspond mathemat model simul central tool guid polit decis - make . typic , ode - base model consid , fraction infect healthi individu chang determinist continu time . In thi work , translat ode - base covid - 19 spread model literatur stochast multi - agent system use contact network mimic complex interact structur . We observ larg depend epidem & # x27 ; dynam structur underli contact graph , adequ captur exist ode - model . instanc , exist super - spreader lead higher infect peak lower death toll compar interact structur without super - spreader . overal , observ interact structur ha crucial impact spread dynam , exce effect paramet basic reproduct number R0 . We conclud determinist model fit covid - 19 outbreak data limit predict power may even lead wrong conclus stochast model take interact structur account offer differ probabl realist epidemiolog insight .', 
+date='Sun, 03 May 2020 16:00:00 GMT', 
+time='2020/05/04', 
+authors=[Author{
+name='Gerrit Grossmann', 
+id='null'
+}, Author{
+name='Michael Backenkoehler', 
+id='null'
+}, Author{
+name='Verena Wolf', 
+id='null'
+}], 
+doi='10.1101/2020.05.05.20091736', 
+pdf=https://static.aminer.cn/upload/pdf/1592/840/1647/5f074b1f9e795e1a9f4af11c_0.pdf, 
+urls=[https://www.medrxiv.org/content/medrxiv/early/2020/05/08/2020.05.05.20091736.full.pdf, https://app.dimensions.ai/details/publication/pub.1127465688]
+}
+Paper{
+title='Swab Seq: A high throughput platform for massively scaled up SARS CoV 2 testing', 
+content='', 
+seg_text='swab seq : A high throughput platform massiv scale sar cov 2 test', 
+date='Sun, 02 Aug 2020 16:00:00 GMT', 
+time='2020/08/03', 
+authors=[Author{
+name='Joshua S. Bloom', 
+id='null'
+}, Author{
+name='Eric M. Jones', 
+id='null'
+}, Author{
+name='Molly Gasperini', 
+id='null'
+}, Author{
+name='Nathan B. Lubock', 
+id='null'
+}, Author{
+name='Laila Sathe', 
+id='null'
+}, Author{
+name='Chetan Munugala', 
+id='null'
+}, Author{
+name='A. Sina Booeshaghi', 
+id='null'
+}, Author{
+name='Oliver F. Brandenberg', 
+id='null'
+}, Author{
+name='Longhua Guo', 
+id='null'
+}, Author{
+name='Scott W. Simpkins', 
+id='null'
+}, Author{
+name='Isabella Lin', 
+id='null'
+}, Author{
+name='Nathan LaPierre', 
+id='null'
+}, Author{
+name='Duke Hong', 
+id='null'
+}, Author{
+name='Yi Zhang', 
+id='null'
+}, Author{
+name='Gabriel Oland', 
+id='null'
+}, Author{
+name='Bianca Judy Choe', 
+id='null'
+}, Author{
+name='Sukantha Chandrasekaran', 
+id='null'
+}, Author{
+name='Evann E. Hilt', 
+id='null'
+}, Author{
+name='Manish J. Butte', 
+id='null'
+}, Author{
+name='Robert Damoiseaux', 
+id='null'
+}], 
+doi='null', 
+pdf=null, 
+urls=[https://app.dimensions.ai/details/publication/pub.1129939703]
+}
+Paper{
+title='Bioinformatic Analysis Reveals That Some Mutations May Affect On Both Spike Structure Damage and Ligand Binding Site', 
+content='', 
+seg_text='bioinformat analysi reveal mutat may affect On spike structur damag ligand bind site', 
+date='Sat, 08 Aug 2020 16:00:00 GMT', 
+time='2020/08/09', 
+authors=[Author{
+name='Emre Aktas', 
+id='null'
+}], 
+doi='null', 
+pdf=null, 
+urls=[https://app.dimensions.ai/details/publication/pub.1130052374]
+}
+Paper{
+title='Importance of suppression and mitigation measures in managing COVID-19
+  outbreaks', 
+content='  I employ a simple mathematical model of an epidemic process to evaluate how four basic quantities: the reproduction number (R), the numbers of sensitive (S) and infectious individuals(I), and total community size (N) affect strategies to control COVID-19. Numerical simulations show that strict suppression measures at the beginning of an epidemic can create low infectious numbers, which thereafter can be managed by mitigation measures over longer periods to flatten the epidemic curve. The stronger the suppression measure, the faster it achieves the low numbers of infections that are conducive to subsequent management. We discuss the predictions of this analysis and how it fits into longer-term sequences of measures, including using the herd immunity concept to leverage acquired immunity. ', 
+seg_text='import suppress mitig measur manag covid - 19 outbreak I employ simpl mathemat model epidem process evalu four basic quantiti : reproduct number ( R ) , number sensit ( S ) infecti individu ( I ) , total commun size ( N ) affect strategi control covid - 19 . numer simul show strict suppress measur begin epidem creat low infecti number , thereaft manag mitig measur longer period flatten epidem curv . stronger suppress measur , faster achiev low number infect conduc subsequ manag . We discuss predict thi analysi fit longer - term sequenc measur , includ use herd immun concept leverag acquir immun .', 
+date='Sun, 29 Mar 2020 16:00:00 GMT', 
+time='2020/03/30', 
+authors=[Author{
+name='Hochberg Michael E.', 
+id='null'
+}], 
+doi='null', 
+pdf=https://static.aminer.cn/storage/pdf/arxiv/20/2005/2005.03323.pdf, 
+urls=[https://arxiv.org/abs/2005.03323]
+}
