@@ -14,17 +14,7 @@
     <string-array name="main_titles">
         <item>@string/fragment_news_1</item>
         <item>@string/fragment_news_2</item>
-        <item>@string/fragment_news_3</item>
-        <item>@string/fragment_news_4</item>
-        <item>@string/fragment_news_5</item>
-        <item>@string/fragment_news_6</item>
-        <item>@string/fragment_news_7</item>
     </string-array>
-    <string name="fragment_news_1">社会</string>
-    <string name="fragment_news_2">国内</string>
-    <string name="fragment_news_3">国际</string>
-    <string name="fragment_news_4">娱乐</string>
-    <string name="fragment_news_5">体育</string>
-    <string name="fragment_news_6">科技</string>
-    <string name="fragment_news_7">健康</string>
+    <string name="fragment_news_1">News</string>
+    <string name="fragment_news_2">Paper</string>
 </resources>
