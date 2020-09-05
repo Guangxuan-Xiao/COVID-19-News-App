@@ -16,7 +16,7 @@ public class Paper {
     }
     public String title;
     public String content;
-    public String seg_text;
+    public String segText;
     public String date;
     public String time;
     public List<Author> authors;
@@ -29,7 +29,7 @@ public class Paper {
         return "Paper{" +
                 "\ntitle='" + title + '\'' +
                 ", \ncontent='" + content + '\'' +
-                ", \nseg_text='" + seg_text + '\'' +
+                ", \nseg_text='" + segText + '\'' +
                 ", \ndate='" + date + '\'' +
                 ", \ntime='" + time + '\'' +
                 ", \nauthors=" + authors +
