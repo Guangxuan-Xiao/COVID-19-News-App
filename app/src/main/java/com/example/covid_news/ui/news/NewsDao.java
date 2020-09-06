@@ -1,42 +1,42 @@
-package com.example.covid_news.ui.channel;
+package com.example.covid_news.ui.news;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.util.Log;
 import com.example.covid_news.db.SQLHelper;
+import com.example.covid_news.data.News;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Description：本地管理tab
- */
-public class ChannelDao {
+public class NewsDao {
 
     private SQLHelper helper = null;
 
-    public ChannelDao(Context context) {
-        helper = new SQLHelper(context);
-    }
+    public NewsDao(Context context) { helper = new SQLHelper(context); }
 
-    public boolean addCache(ChannelItem item) {
+    public boolean addCache(News item) {
         boolean flag = false;
         SQLiteDatabase database = null;
         long id = -1;
         try {
             database = helper.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put("name", item.getName());
-            values.put("id", item.getId());
-            values.put("orderId", item.getOrderId());
-            values.put("selected", item.getSelected());
-            id = database.insert("channel", null, values);
+            values.put("visited", 0);
+            values.put("title", item.getTitle());
+            values.put("time", item.getTime());
+            values.put("source", item.getSource());
+            values.put("content", item.getContent());
+            values.put("url", item.getUrl());
+            id = database.insert("news", null, values);
             flag = (id != -1 ? true : false);
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (database != null) {
                 database.close();
@@ -51,7 +51,7 @@ public class ChannelDao {
         int count = 0;
         try {
             database = helper.getWritableDatabase();
-            count = database.delete("channel", whereClause, whereArgs);
+            count = database.delete("news", whereClause, whereArgs);
             flag = (count > 0 ? true : false);
         } catch (Exception e) {
         } finally {
@@ -69,7 +69,7 @@ public class ChannelDao {
         int count = 0;
         try {
             database = helper.getWritableDatabase();
-            count = database.update("channel", values, whereClause, whereArgs);
+            count = database.update("news", values, whereClause, whereArgs);
             flag = (count > 0 ? true : false);
         } catch (Exception e) {
         } finally {
@@ -77,7 +77,33 @@ public class ChannelDao {
                 database.close();
             }
         }
+        if (flag){
+            Log.i("Update", count + " visited");
+        }
         return flag;
+    }
+
+    public boolean searchNews(String str){
+        SQLiteDatabase database = null;
+        Cursor cursor = null;
+        try{
+            database = helper.getReadableDatabase();
+            cursor = database.rawQuery("select * from news where url=?", new String[]{str});
+            while (cursor.moveToNext()){
+                database.close();
+                Log.i("News exists", str);
+                return true;
+            }
+            database.close();
+            Log.i("News doesn't exist", str);
+            return false;
+        } catch (Exception e) {
+        } finally {
+            if (database != null) {
+                database.close();
+            }
+        }
+        return true;
     }
 
     public Map<String, String> viewCache(String selection, String[] selectionArgs) {
@@ -86,7 +112,7 @@ public class ChannelDao {
         Map<String, String> map = new HashMap<String, String>();
         try {
             database = helper.getReadableDatabase();
-            cursor = database.query(true, SQLHelper.TABLE_CHANNEL, null, selection,
+            cursor = database.query(true, "news", null, selection,
                     selectionArgs, null, null, null, null);
             int cols_len = cursor.getColumnCount();
             while (cursor.moveToNext()) {
@@ -115,7 +141,7 @@ public class ChannelDao {
         Cursor cursor = null;
         try {
             database = helper.getReadableDatabase();
-            cursor = database.query(false, SQLHelper.TABLE_CHANNEL, null, selection, selectionArgs, null, null, null, null);
+            cursor = database.query(false, "news", null, selection, selectionArgs, null, null, null, null);
             int cols_len = cursor.getColumnCount();
             while (cursor.moveToNext()) {
                 Map<String, String> map = new HashMap<String, String>();
@@ -140,17 +166,14 @@ public class ChannelDao {
     }
 
     public void clearFeedTable() {
-        String sql = "DELETE FROM " + SQLHelper.TABLE_CHANNEL + ";";
+        String sql = "DELETE FROM news;";
         SQLiteDatabase db = helper.getWritableDatabase();
         db.execSQL(sql);
         revertSeq();
     }
-
     private void revertSeq() {
-        String sql = "update sqlite_sequence set seq=0 where name='"
-                + SQLHelper.TABLE_CHANNEL + "'";
+        String sql = "update sqlite_sequence set seq=0 where name='news'";
         SQLiteDatabase db = helper.getWritableDatabase();
         db.execSQL(sql);
     }
-
 }

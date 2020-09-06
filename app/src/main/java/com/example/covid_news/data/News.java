@@ -46,4 +46,6 @@ public class News extends Data {
     public List<URL> getUrls() {
         return urls;
     }
+
+    public String getUrl() {return urls.get(0).toString();}
 }

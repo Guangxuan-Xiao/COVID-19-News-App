@@ -17,7 +17,7 @@ public class NewsPresenter implements NewsContract.Presenter, NewsContract.OnLoa
 
     public NewsPresenter(NewsContract.View view,Context context) {
         this.view = view;
-        this.model = new NewsModel();
+        this.model = new NewsModel(context);
         this.context=context;
     }
 
