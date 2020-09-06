@@ -9,19 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
 import com.example.covid_news.R;
-import com.example.covid_news.gson.NewsGson;
-import com.example.covid_news.ui.news.NewsDetailsActivity;
 import com.example.covid_news.ui.news.contract.NewsContract;
 import com.example.covid_news.ui.news.presenter.NewsPresenter;
 import com.example.covid_news.data.News;
 import com.example.covid_news.util.PixelUtil;
-import com.example.covid_news.util.PicUtil;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
@@ -35,24 +30,21 @@ import butterknife.ButterKnife;
 
 import android.content.Context;
 
-class NewsViewHolder extends BaseViewHolder<NewsGson.NewslistBean> {
+class NewsViewHolder extends BaseViewHolder<News> {
 
-    private TextView mTv_name;
-    private ImageView mImg_face;
-    private TextView mTv_sign;
+    private TextView mTitle;
+    private TextView mInfo;
 
     public NewsViewHolder(ViewGroup parent) {
         super(parent,R.layout.news_recycler_item);
-        mTv_name = $(R.id.person_name);
-        mTv_sign = $(R.id.person_sign);
-        mImg_face = $(R.id.person_face);
+        mTitle = $(R.id.news_recycler_title);
+        mInfo = $(R.id.news_recycler_info);
     }
 
     @Override
-    public void setData(final NewsGson.NewslistBean data) {
-        mTv_name.setText(data.getTitle());
-        mTv_sign.setText(data.getCtime());
-        PicUtil.showImage(mImg_face,getContext(),data.getPicUrl());
+    public void setData(final News data) {
+        mTitle.setText(data.getTitle());
+        mInfo.setText(data.getDate() + " 来源：" + data.getSource());
     }
 
 }
@@ -84,8 +76,6 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
         fragment.setArguments(bundle);
         return fragment;
     }
-
-
 
     @BindView(R.id.recyclerView)
     EasyRecyclerView recyclerView;
@@ -170,19 +160,14 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
 
     }
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
-
     @Override
     public void returnData(List<News> data) {
-
-
         adapter.addAll(data);
-
         Log.e("adapter",adapter.getAllData().size()+"");
     }
 

@@ -6,23 +6,14 @@
                 android:gravity="center_vertical"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:background="@android:color/white">
-    <ImageView
-            android:id="@+id/person_face"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginLeft="8dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="8dp" />
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/person_face"
             android:gravity="center_vertical"
             android:layout_marginLeft="16dp"
             android:orientation="vertical">
         <TextView
-                android:id="@+id/person_name"
+                android:id="@+id/news_recycler_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -30,7 +21,7 @@
                 android:layout_marginBottom="8dp"
         />
         <TextView
-                android:id="@+id/person_sign"
+                android:id="@+id/news_recycler_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"

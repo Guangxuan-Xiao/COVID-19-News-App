@@ -64,7 +64,6 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
         mImgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Click channel button");
                 Intent intent_channel = new Intent(getContext(), ChannelActivity.class);
                 startActivityForResult(intent_channel, 20);
             }
