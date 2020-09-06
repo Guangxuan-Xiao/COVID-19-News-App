@@ -3,6 +3,7 @@ package com.example.covid_news.ui.news.presenter;
 import android.content.Context;
 
 import com.example.covid_news.gson.NewsGson;
+import com.example.covid_news.data.News;
 import com.example.covid_news.ui.news.contract.NewsContract;
 import com.example.covid_news.ui.news.model.NewsModel;
 import com.example.covid_news.util.NetworkUtil;
@@ -20,15 +21,13 @@ public class NewsPresenter implements NewsContract.Presenter, NewsContract.OnLoa
         this.context=context;
     }
 
-
-
     @Override
     public void loadData(int type, int page) {
         model.loadData(type,this,page);
     }
 
     @Override
-    public void onSuccess(List<NewsGson.NewslistBean> list) {
+    public void onSuccess(List<News> list) {
         view.returnData(list);
     }
 

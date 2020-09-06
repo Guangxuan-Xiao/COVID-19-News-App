@@ -1,17 +1,17 @@
 package com.example.covid_news.ui.news.contract;
 
-import com.example.covid_news.gson.NewsGson;
+import com.example.covid_news.data.News;
 import java.util.List;
 
 public interface NewsContract {
 
 
     interface View{
-        void returnData(List<NewsGson.NewslistBean> datas);
+        void returnData(List<News> data);
     }
 
     interface OnLoadFirstDataListener{
-        void  onSuccess(List<NewsGson.NewslistBean> list);
+        void  onSuccess(List<News> list);
         void  onFailure(String str,Throwable e);
     }
 

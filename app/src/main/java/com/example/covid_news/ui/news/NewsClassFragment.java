@@ -19,6 +19,7 @@ import com.example.covid_news.gson.NewsGson;
 import com.example.covid_news.ui.news.NewsDetailsActivity;
 import com.example.covid_news.ui.news.contract.NewsContract;
 import com.example.covid_news.ui.news.presenter.NewsPresenter;
+import com.example.covid_news.data.News;
 import com.example.covid_news.util.PixelUtil;
 import com.example.covid_news.util.PicUtil;
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -56,7 +57,7 @@ class NewsViewHolder extends BaseViewHolder<NewsGson.NewslistBean> {
 
 }
 
-class NewsAdapter extends RecyclerArrayAdapter<NewsGson.NewslistBean> {
+class NewsAdapter extends RecyclerArrayAdapter<News> {
     public NewsAdapter(Context context) {
         super(context);
     }
@@ -150,8 +151,10 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
             @Override
             public void onItemClick(int position) {
                 ArrayList<String> data = new ArrayList<String>();
-                data.add(adapter.getAllData().get(position).getPicUrl());
-                data.add(adapter.getAllData().get(position).getUrl());
+                data.add(adapter.getAllData().get(position).getTitle());
+                data.add(adapter.getAllData().get(position).getContent());
+                data.add(adapter.getAllData().get(position).getDate());
+                data.add(adapter.getAllData().get(position).getSource());
                 Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
                 //用Bundle携带数据
                 Bundle bundle = new Bundle();
@@ -176,10 +179,10 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
 
 
     @Override
-    public void returnData(List<NewsGson.NewslistBean> datas) {
+    public void returnData(List<News> data) {
 
 
-        adapter.addAll(datas);
+        adapter.addAll(data);
 
         Log.e("adapter",adapter.getAllData().size()+"");
     }
