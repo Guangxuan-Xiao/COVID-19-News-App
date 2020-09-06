@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Parser {
-    private Gson gson;
-    private JsonParser jsonParser;
+    private static Gson gson = new Gson();
+    private static JsonParser jsonParser = new JsonParser();
 
     public List<News> parseNewsList(String json) {
         JsonObject query = jsonParser.parse(json).getAsJsonObject();

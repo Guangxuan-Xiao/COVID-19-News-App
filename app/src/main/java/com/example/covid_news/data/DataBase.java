@@ -8,6 +8,11 @@ public class DataBase {
     private Parser parser;
     private Server server;
 
+    public DataBase(){
+        parser = new Parser();
+        server = new Server();
+    }
+
     public List<News> getNewsList(int page, int size) {
         return parser.parseNewsList(server.getNewsListJson(page, size));
     }

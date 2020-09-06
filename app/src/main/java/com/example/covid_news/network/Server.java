@@ -7,7 +7,7 @@ import okhttp3.Response;
 import java.io.*;
 
 public class Server {
-    private URLConst urlConst;
+    private static URLConst urlConst = new URLConst();
     private static final OkHttpClient client = new OkHttpClient();
 
     private String getJsonStr(String url) {

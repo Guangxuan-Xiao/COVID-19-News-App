@@ -2,6 +2,7 @@ package com.example.covid_news.ui.news.model;
 
 import com.example.covid_news.data.News;
 import com.example.covid_news.ui.news.contract.NewsContract;
+import com.example.covid_news.data.DataBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ public class NewsModel implements NewsContract.Model{
         //size: default (20)
 
         List<News> newsList = new ArrayList<News>();
+        DataBase db = new DataBase();
+        newsList = db.getNewsList(page, 20);
         listener.onSuccess(newsList);
     }
 }
