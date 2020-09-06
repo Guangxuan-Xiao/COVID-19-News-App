@@ -15,8 +15,6 @@ import java.util.List;
 
 /**
  * Description：用户栏目适配器
- * <p>
- * Created by Mjj on 2016/11/19.
  */
 
 public class DragAdapter extends BaseAdapter {
@@ -88,10 +86,6 @@ public class DragAdapter extends BaseAdapter {
         item_text = (TextView) view.findViewById(R.id.text_item);
         ChannelItem channel = getItem(position);
         item_text.setText(channel.getName());
-//        if ((position == 0) || (position == 1)) {
-        if (position == 0) {
-            item_text.setEnabled(false);
-        }
         if (isChanged && (position == holdPosition) && !isItemShow) {
             item_text.setText("");
             item_text.setSelected(true);

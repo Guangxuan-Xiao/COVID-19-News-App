@@ -35,12 +35,11 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/my_category_tip_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12.0dip"
-                    android:text="单击增删频道，长按拖拽排序"
-                    android:textSize="11.0sp" />
+                        android:id="@+id/my_category_tip_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12.0dip"
+                        android:textSize="11.0sp" android:text="单击增删分类"/>
             </LinearLayout>
 
             <View

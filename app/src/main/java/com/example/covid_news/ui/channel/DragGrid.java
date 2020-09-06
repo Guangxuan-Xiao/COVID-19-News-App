@@ -173,7 +173,6 @@ public class DragGrid extends GridView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        // TODO Auto-generated method stub
         boolean bool = true;
         if (dragImageView != null && dragPosition != AdapterView.INVALID_POSITION) {
             // 移动时候的对应x,y位置

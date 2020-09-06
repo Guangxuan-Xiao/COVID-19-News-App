@@ -48,7 +48,7 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
     ArrayList<ChannelItem> otherChannelList = new ArrayList<ChannelItem>(); // 数据源
 
     /**
-     * 是否在移动，由于是动画结束后才进行的数据更替，设置这个限制为了避免操作太频繁造成的数据错乱。
+     * 是否在移动，由于动画结束后才进行数据更替，设置这个限制以避免操作太频繁造成的数据错乱。
      */
     boolean isMove = false;
 
@@ -94,36 +94,33 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
         }
         switch (parent.getId()) {
             case R.id.userGridView:
-                //position为 0 的不进行任何操作
-                if (position != 0) {
-                    final ImageView moveImageView = getView(view);
-                    if (moveImageView != null) {
-                        TextView newTextView = (TextView) view.findViewById(R.id.text_item);
-                        final int[] startLocation = new int[2];
-                        newTextView.getLocationInWindow(startLocation);
-                        final ChannelItem channel = ((DragAdapter) parent.getAdapter()).getItem(position);//获取点击的频道内容
-                        otherAdapter.setVisible(false);
-                        //添加到最后一个
-                        otherAdapter.addItem(channel);
-                        new Handler().postDelayed(new Runnable() {
-                            public void run() {
-                                try {
-                                    int[] endLocation = new int[2];
-                                    //获取终点的坐标
-                                    otherGridView.getChildAt(otherGridView.getLastVisiblePosition()).getLocationInWindow(endLocation);
-                                    MoveAnim(moveImageView, startLocation, endLocation, channel, userGridView);
-                                    userAdapter.setRemove(position);
-                                } catch (Exception localException) {
-                                }
+                final ImageView moveImageView = getView(view);
+                if (moveImageView != null) {
+                    TextView newTextView = (TextView) view.findViewById(R.id.text_item);
+                    final int[] startLocation = new int[2];
+                    newTextView.getLocationInWindow(startLocation);
+                    final ChannelItem channel = ((DragAdapter) parent.getAdapter()).getItem(position);//获取点击的频道内容
+                    otherAdapter.setVisible(false);
+                    //添加到最后一个
+                    otherAdapter.addItem(channel);
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            try {
+                                int[] endLocation = new int[2];
+                                //获取终点的坐标
+                                otherGridView.getChildAt(otherGridView.getLastVisiblePosition()).getLocationInWindow(endLocation);
+                                MoveAnim(moveImageView, startLocation, endLocation, channel, userGridView);
+                                userAdapter.setRemove(position);
+                            } catch (Exception localException) {
                             }
-                        }, 50L);
-                    }
+                        }
+                    }, 50L);
                 }
                 break;
             case R.id.otherGridView:
                 // 其它GridView
-                final ImageView moveImageView = getView(view);
-                if (moveImageView != null) {
+                final ImageView moveImageView_1 = getView(view);
+                if (moveImageView_1 != null) {
                     TextView newTextView = (TextView) view.findViewById(R.id.text_item);
                     final int[] startLocation = new int[2];
                     newTextView.getLocationInWindow(startLocation);
@@ -137,7 +134,7 @@ public class ChannelActivity extends GestureDetectorActivity implements AdapterV
                                 int[] endLocation = new int[2];
                                 //获取终点的坐标
                                 userGridView.getChildAt(userGridView.getLastVisiblePosition()).getLocationInWindow(endLocation);
-                                MoveAnim(moveImageView, startLocation, endLocation, channel, otherGridView);
+                                MoveAnim(moveImageView_1, startLocation, endLocation, channel, otherGridView);
                                 otherAdapter.setRemove(position);
                             } catch (Exception localException) {
                             }
