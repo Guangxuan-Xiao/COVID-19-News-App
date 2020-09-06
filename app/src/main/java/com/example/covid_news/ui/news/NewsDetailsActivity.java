@@ -23,8 +23,6 @@ import butterknife.ButterKnife;
 
 public class NewsDetailsActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.Title)
     TextView title;
     @BindView(R.id.Info)
@@ -38,16 +36,6 @@ public class NewsDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news_detail);
         ButterKnife.bind(this);
 
-        toolbar.setTitle("新闻详情");
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
         //新页面接收数据
         Bundle bundle = this.getIntent().getExtras();
         final ArrayList<String> data = bundle.getStringArrayList("data");
