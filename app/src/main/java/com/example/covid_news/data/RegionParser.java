@@ -4,7 +4,9 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Map;
 
+import android.icu.text.Edits;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -20,7 +22,9 @@ public class RegionParser {
         Gson gson = new Gson();
         JsonParser jsonParser = new JsonParser();
         JsonObject regions = jsonParser.parse(json).getAsJsonObject();
-        for (String name : regions.keySet()) {
+
+        for (Map.Entry<String, JsonElement> en : regions.entrySet()) {
+            String name = en.getKey();
             JsonObject regionJsonObject = regions.get(name).getAsJsonObject();
             Region region = new Region(name);
             region.begin = regionJsonObject.get("begin").getAsString();
