@@ -8,23 +8,28 @@
         android:fitsSystemWindows="true"
         tools:context="com.example.covid_news.MainActivity">
 
-    <LinearLayout
-            android:orientation="horizontal"
+    <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                app:tabTextColor="#fff"
-                android:layout_width="340dp"
-                android:layout_height="wrap_content" android:layout_weight="1"
-                android:background="@color/colorPrimary" android:clickable="true" android:contextClickable="true"/>
-        <ImageView
-                android:layout_width="35dp"
-                android:layout_height="match_parent" app:srcCompat="@drawable/ic_menu_news"
-                android:id="@+id/More_Column"
-                android:layout_weight="1" android:background="@color/colorPrimary"
-                android:contentDescription="Add channel" android:clickable="true" android:contextClickable="true"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="1">
+            <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    app:tabTextColor="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_weight="0.12"
+                    android:background="@color/colorPrimary"/>
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" app:srcCompat="@drawable/ic_menu_news"
+                    android:id="@+id/More_Column"
+                    android:layout_weight="1" android:background="@color/colorPrimary"
+                    android:contentDescription="Add channel"/>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
