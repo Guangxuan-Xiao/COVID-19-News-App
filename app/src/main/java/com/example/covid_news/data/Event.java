@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.net.URL;
 import java.util.List;
 
-public class Event {
+public class Event extends Data {
     @SerializedName("_id")
     public String id;
 

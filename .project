@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>COVID-News</name>
+	<name>COVID19-News</name>
 	<comment>Project COVID-19-News-App created by Buildship.</comment>
 	<projects>
 	</projects>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1599287940340</id>
+			<id>0</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

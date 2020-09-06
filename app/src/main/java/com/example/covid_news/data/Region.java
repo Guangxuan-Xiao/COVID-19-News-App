@@ -3,7 +3,7 @@ package com.example.covid_news.data;
 import java.net.URL;
 import java.util.List;
 
-public class Region {
+public class Region extends Data {
     public String name;
     public String begin;
     public List<List<Integer>> data;
