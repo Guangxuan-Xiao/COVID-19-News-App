@@ -8,7 +8,7 @@ public class DataBase {
     private Parser parser;
     private Server server;
 
-    public DataBase(){
+    public DataBase() {
         parser = new Parser();
         server = new Server();
     }
@@ -24,6 +24,4 @@ public class DataBase {
     public List<Region> getRegionList() {
         return parser.parseEpidemic(server.getEpidemicJson());
     }
-
-
 }
