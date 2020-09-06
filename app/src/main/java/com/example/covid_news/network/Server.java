@@ -1,10 +1,15 @@
 package com.example.covid_news.network;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import androidx.annotation.NonNull;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.*;
+
 
 public class Server {
     private static URLConst urlConst = new URLConst();
