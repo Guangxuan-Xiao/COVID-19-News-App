@@ -6,24 +6,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 
-class Relation {
-    public String relation;
-    public URL url;
-    public String label;
-    public boolean forward;
 
-    @Override
-    public String toString() {
-        return "Relation{" +
-                "\nrelation='" + relation + '\'' +
-                ", \nurl=" + url +
-                ", \nlabel='" + label + '\'' +
-                ", \nforward=" + forward +
-                "\n}";
-    }
-}
-
-public class Entity {
+public class Entity extends Data {
     public String label;
     public float hot;
     public URL url;
@@ -33,6 +17,24 @@ public class Entity {
 
         class COVID {
             public HashMap<String, String> properties;
+
+            class Relation {
+                public String relation;
+                public URL url;
+                public String label;
+                public boolean forward;
+
+                @Override
+                public String toString() {
+                    return "Relation{" +
+                            "\nrelation='" + relation + '\'' +
+                            ", \nurl=" + url +
+                            ", \nlabel='" + label + '\'' +
+                            ", \nforward=" + forward +
+                            "\n}";
+                }
+            }
+
             public List<Relation> relations;
 
             @Override

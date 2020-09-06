@@ -3,7 +3,7 @@ package com.example.covid_news.data;
 import java.net.URL;
 import java.util.List;
 
-public class Scholar {
+public class Scholar extends Data {
     public URL avatar;
     public String name;
     public String name_zh;
@@ -34,7 +34,9 @@ public class Scholar {
                     "\n}";
         }
     }
+
     public Indices indices;
+
     class Profile {
         public String address;
         public String affiliation;

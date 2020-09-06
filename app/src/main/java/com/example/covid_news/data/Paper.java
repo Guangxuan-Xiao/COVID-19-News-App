@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.net.URL;
 import java.util.List;
 
-public class Paper {
+public class Paper extends Data {
     class Author {
         String name;
         String id;
@@ -18,6 +18,7 @@ public class Paper {
                     "\n}";
         }
     }
+
     public String title;
     public String content;
     @SerializedName("seg_text")
