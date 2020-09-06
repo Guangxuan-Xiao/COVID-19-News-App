@@ -64,7 +64,6 @@ class NewsAdapter extends RecyclerArrayAdapter<News> {
 
     @Override
     public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-
         return new NewsViewHolder(parent);
     }
 }

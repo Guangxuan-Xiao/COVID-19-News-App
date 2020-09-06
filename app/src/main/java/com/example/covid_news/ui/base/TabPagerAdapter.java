@@ -5,10 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-/**
- * Created by Administrator on 2017/5/2.
- */
-
 public class TabPagerAdapter extends FragmentPagerAdapter {
 
     private String tabTitles[];
@@ -17,10 +13,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
     public TabPagerAdapter(FragmentManager fm, Fragment[] fragments) {
         super(fm);
         this.fragments = fragments;
-
     }
-
-
 
     public void setTabTitles(@NonNull String[] tabTitles) {
         this.tabTitles = tabTitles;
