@@ -65,6 +65,9 @@ def get_color(i, r_off=1, g_off=1, b_off=1):
 
 
 def remove_outliers(G):
+    for node in list(G.nodes):
+        if G.degree[node] == 0:
+            G.remove_node(node)
     return G
 
 
@@ -77,7 +80,7 @@ def community_detection(G):
 
     # Set node and edge communities
     communities = sorted(
-        nxcom.greedy_modularity_communities(G), key=len, reverse=True)
+        nxcom.greedy_modularity_communities(G, weight="weight"), key=len, reverse=True)
     set_node_community(G, communities)
     set_edge_community(G)
 
@@ -97,7 +100,7 @@ def community_detection(G):
         edgelist=external,
         edge_color="silver",
         node_color=node_color,
-        alpha=0.2,
+        alpha=0.5,
         with_labels=False)
     # internal edges
     nx.draw_networkx(
@@ -105,7 +108,7 @@ def community_detection(G):
         edgelist=internal,
         edge_color=internal_color,
         node_color=node_color,
-        alpha=0.05,
+        alpha=0.2,
         with_labels=False)
     plt.show()
 
