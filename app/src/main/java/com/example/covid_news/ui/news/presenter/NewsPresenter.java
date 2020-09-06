@@ -15,15 +15,15 @@ public class NewsPresenter implements NewsContract.Presenter, NewsContract.OnLoa
     private NewsContract.Model model;
     private Context context;
 
-    public NewsPresenter(NewsContract.View view,Context context) {
+    public NewsPresenter(NewsContract.View view, Context context) {
         this.view = view;
         this.model = new NewsModel();
-        this.context=context;
+        this.context = context;
     }
 
     @Override
     public void loadData(int type, int page) {
-        model.loadData(type,this,page);
+        model.loadData(type, this, page);
     }
 
     @Override

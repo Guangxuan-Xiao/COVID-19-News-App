@@ -14,13 +14,11 @@ import java.util.List;
 public class NewsModel implements NewsContract.Model {
     private static final DataBase db = new DataBase();
     List<News> newsList;
+    Handler handler;
 
     @Override
     public void loadData(int type, final NewsContract.OnLoadFirstDataListener listener, int page) {
-        //TO-DO: load data
-        //type 0: News, type 1: Paper
-        //size: default (20)
-        Handler handler = new Handler() {
+        handler = new Handler() {
             @Override
             public void handleMessage(@NonNull Message msg) {
                 super.handleMessage(msg);
