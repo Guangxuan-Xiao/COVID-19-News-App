@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">COVID-19 News</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">疫情数据</string>
+    <string name="menu_gallery">疫情图谱</string>
+    <string name="menu_slideshow">新闻聚类</string>
+    <string name="menu_news">新闻列表</string>
+    <string-array name="main_titles">
+        <item>@string/fragment_news_1</item>
+        <item>@string/fragment_news_2</item>
+    </string-array>
+    <string name="fragment_news_1">新闻</string>
+    <string name="fragment_news_2">论文</string>
+</resources>
