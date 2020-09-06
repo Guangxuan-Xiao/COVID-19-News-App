@@ -17,9 +17,6 @@ public class NewsModel implements NewsContract.Model {
 
     @Override
     public void loadData(int type, final NewsContract.OnLoadFirstDataListener listener, int page) {
-        //TO-DO: load data
-        //type 0: News, type 1: Paper
-        //size: default (20)
         Handler handler = new Handler() {
             @Override
             public void handleMessage(@NonNull Message msg) {
