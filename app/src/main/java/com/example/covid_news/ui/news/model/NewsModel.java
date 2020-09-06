@@ -18,6 +18,7 @@ public class NewsModel implements NewsContract.Model {
     private Context context;
     private NewsDao dao;
     List<News> newsList;
+    Handler handler;
 
     public NewsModel(Context context){
         this.context = context;
@@ -26,7 +27,7 @@ public class NewsModel implements NewsContract.Model {
 
     @Override
     public void loadData(int type, final NewsContract.OnLoadFirstDataListener listener, int page) {
-        Handler handler = new Handler() {
+        handler = new Handler() {
             @Override
             public void handleMessage(@NonNull Message msg) {
                 super.handleMessage(msg);
