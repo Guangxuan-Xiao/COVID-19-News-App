@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.example.covid_news.data.News;
+import com.example.covid_news.data.Paper;
 import com.example.covid_news.ui.news.contract.NewsContract;
 import com.example.covid_news.data.DataBase;
 import com.example.covid_news.ui.news.NewsDao;
@@ -47,14 +48,27 @@ public class NewsModel implements NewsContract.Model {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    newsList = db.getNewsList(page, 20);
-                    for (News piece: newsList){
-                        boolean exist = dao.searchNews(piece.getUrl());
-                        if (!exist){
-                            dao.addCache(piece);
+                    if (type == 0){
+                        newsList = db.getNewsList(page, 20);
+                        for (News piece: newsList){
+                            boolean exist = dao.searchNews(piece.getUrl());
+                            if (!exist){
+                                dao.addCache(piece, 0);
+                            }
                         }
+                        handler.sendEmptyMessage(123);
                     }
-                    handler.sendEmptyMessage(123);
+                    else if (type == 1){
+                        List<Paper> paperList = db.getPaperList(page, 20);
+                        for (Paper p: paperList){
+                            News piece = p.toNews();
+                            boolean exist = dao.searchNews(piece.getUrl());
+                            if (!exist){
+                                dao.addCache(piece, 1);
+                            }
+                        }
+                        handler.sendEmptyMessage(123);
+                    }
                 }
             }).start();
         }
@@ -63,7 +77,9 @@ public class NewsModel implements NewsContract.Model {
             Toast toast = Toast.makeText(context, "网络连接不可用，加载本地缓存", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
-            List<Map<String, String>> newsListFromCache = dao.listCache(null, new String[]{}, page);
+            String type_str = String.valueOf(type);
+            List<Map<String, String>> newsListFromCache =
+                    dao.listCache("type=?", new String[]{type_str}, page);
             for (Map<String, String> newsMap: newsListFromCache){
                 News piece = new News();
                 piece.content = newsMap.get("content");

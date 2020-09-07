@@ -44,4 +44,15 @@ public class Paper extends Data {
                 ", \nurls=" + urls +
                 "\n}";
     }
+
+    public News toNews(){
+        News news = new News();
+        news.urls = urls;
+        news.content = content;
+        news.title = title;
+        news.time = time;
+        news.date = date;
+        news.source = null;
+        return news;
+    }
 }

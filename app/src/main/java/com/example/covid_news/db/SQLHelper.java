@@ -36,7 +36,7 @@ public class SQLHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
         String sql2 = "create table if not exists news " +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "visited integer, title varchar(100), time varchar(40), " +
+                "visited integer, type integer, title varchar(100), time datetime, " +
                 "source varchar(40), content varchar(4000), url varchar(200))";
         db.execSQL(sql2);
     }

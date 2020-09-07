@@ -60,7 +60,12 @@ class NewsViewHolder extends BaseViewHolder<News> {
         if (visited == 1){
             mTitle.setTextColor(Color.BLUE);
         }
-        mInfo.setText(data.getTime() + " 来源：" + data.getSource());
+        if (data.getSource() == null){
+            mInfo.setText(data.getTime());
+        }
+        else {
+            mInfo.setText(data.getTime() + " 来源：" + data.getSource());
+        }
     }
 
 }
@@ -128,8 +133,8 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
             @Override
             public void onMoreShow() {
                 Log.e("更多","更多");
+                pageIndex += 1;
                 mPresenter.loadData(type,pageIndex);
-                pageIndex=pageIndex+1;
             }
             @Override
             public void onMoreClick() {
@@ -159,6 +164,7 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
                 data.add(adapter.getAllData().get(position).getContent());
                 data.add(adapter.getAllData().get(position).getDate());
                 data.add(adapter.getAllData().get(position).getSource());
+                data.add(adapter.getAllData().get(position).getUrl());
                 ContentValues values = new ContentValues();
                 values.put("visited", 1);
                 dao.updateCache(values, "title=?",

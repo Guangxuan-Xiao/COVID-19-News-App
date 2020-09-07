@@ -20,7 +20,7 @@ public class NewsDao {
 
     public NewsDao(Context context) { helper = new SQLHelper(context); }
 
-    public boolean addCache(News item) {
+    public boolean addCache(News item, int type) {
         boolean flag = false;
         SQLiteDatabase database = null;
         long id = -1;
@@ -33,6 +33,7 @@ public class NewsDao {
             values.put("source", item.getSource());
             values.put("content", item.getContent());
             values.put("url", item.getUrl());
+            values.put("type", type);
             id = database.insert("news", null, values);
             flag = (id != -1 ? true : false);
         } catch (Exception e) {
@@ -178,10 +179,4 @@ public class NewsDao {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.execSQL(sql);
     }
-
-//    public void sort(String keyCol, boolean desc){
-//        SQLiteDatabase db = helper.getWritableDatabase();
-//        String mode = desc ? "DESC" : "ASC";
-//        db.execSQL("SELECT * FROM news ORDER BY " + keyCol + " " + mode);
-//    }
 }
