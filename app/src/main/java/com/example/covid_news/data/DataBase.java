@@ -27,21 +27,8 @@ public class DataBase {
         return parser.parsePaperList(server.getPaperListJson(page, size));
     }
 
-    public List<Region> getRegionList() {
+    public List<Region> getRegionListFromLocal(){
         File f = new File(context.getFilesDir(), "epidemic.txt");
-        if (!f.exists()){
-            try {
-                FileOutputStream os = new FileOutputStream(f);
-                String str = server.getEpidemicJson();
-                os.write(str.getBytes());
-                Log.i("Get from Internet", "1");
-                return parser.parseEpidemic(str);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
         Long fileLength = f.length();
         byte[] fileContent = new byte[fileLength.intValue()];
         try {
@@ -55,5 +42,35 @@ public class DataBase {
         }
         String str = new String(fileContent);
         return parser.parseEpidemic(str);
+    }
+
+    public List<Region> getRegionList() {
+        File f = new File(context.getFilesDir(), "epidemic.txt");
+        try {
+            FileOutputStream os = new FileOutputStream(f);
+            String str = server.getEpidemicJson();
+            os.write(str.getBytes());
+            Log.i("Get from Internet", "1");
+            os.close();
+            return parser.parseEpidemic(str);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+//        Long fileLength = f.length();
+//        byte[] fileContent = new byte[fileLength.intValue()];
+//        try {
+//            FileInputStream is = new FileInputStream(f);
+//            is.read(fileContent);
+//            is.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        String str = new String(fileContent);
+//        return parser.parseEpidemic(str);
     }
 }

@@ -2,6 +2,9 @@ package com.example.covid_news.ui.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,25 +49,47 @@ public class HomeFragment extends Fragment {
 //        mLineChart.setData(lineData);
 //        mLineChart.invalidate();
         mChart = root.findViewById(R.id.chart1);
+        mChart.setDrawValueAboveBar(true);
+        mChart.setPinchZoom(false);
+        mChart.setMaxVisibleValueCount(60);
+        mChart.setScaleEnabled(false);
+        mChart.setDragEnabled(true);
+        mChart.setHighlightPerDragEnabled(true);
+        mChart.zoom(40f, 1f, 0, 0);
+
         List<BarEntry> entries = new ArrayList<BarEntry>();
 
         DataBase db = new DataBase(getContext());
-        List<Region> regionList = db.getRegionList();
+        List<Region> regionList = db.getRegionListFromLocal();
         int length = regionList.size();
         String[] name = new String[length];
+        int cnt = 0;
         for (int i = 0; i < length; ++i){
-            name[i] = regionList.get(i).name;
-            int confirmed = regionList.get(i).data.get(-1).get(0);
-            entries.add(new BarEntry(i+1, confirmed));
+            String str = regionList.get(i).name;
+            if (str.contains("|")){
+                continue;
+            }
+            name[cnt] = str;
+            int sz = regionList.get(i).data.size();
+            int confirmed = regionList.get(i).data.get(sz-1).get(0);
+            cnt += 1; // start from 1
+            entries.add(new BarEntry(cnt, confirmed));
         }
+        Log.i("Count", String.valueOf(cnt));
         BarDataSet barDataSet = new BarDataSet(entries, "累计确诊");
         BarData barData = new BarData(barDataSet);
         mChart.setData(barData);
         XAxis xAxis = mChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setLabelRotationAngle(45);
+        xAxis.setGranularity(1f);
+        xAxis.setLabelCount(cnt);
+        xAxis.setTextSize(10f);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(){
             @Override
             public String getFormattedValue(float value) {
                 int index = Math.round(value);
+                System.out.println(index);
                 return name[index-1];
             }
         });
