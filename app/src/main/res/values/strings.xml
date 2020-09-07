@@ -17,4 +17,5 @@
     </string-array>
     <string name="fragment_news_1">新闻</string>
     <string name="fragment_news_2">论文</string>
+    <string name="menu_expert">知疫学者</string>
 </resources>

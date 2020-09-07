@@ -28,6 +28,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -55,12 +56,22 @@ public class HomeFragment extends Fragment {
         mChart.setScaleEnabled(false);
         mChart.setDragEnabled(true);
         mChart.setHighlightPerDragEnabled(true);
-        mChart.zoom(40f, 1f, 0, 0);
+        mChart.zoom(10f, 1f, 0, 0);
 
-        List<BarEntry> entries = new ArrayList<BarEntry>();
+        List<BarEntry> confirmedEntry = new ArrayList<BarEntry>();
+        //List<BarEntry> suspectedEntry = new ArrayList<BarEntry>();
+        List<BarEntry> curedEntry = new ArrayList<BarEntry>();
+        List<BarEntry> deadEntry = new ArrayList<BarEntry>();
 
         DataBase db = new DataBase(getContext());
         List<Region> regionList = db.getRegionListFromLocal();
+        regionList.sort(new Comparator<Region>() {
+            @Override
+            public int compare(Region t1, Region t2) {
+                int sz1 = t1.data.size(), sz2 = t2.data.size();
+                return -t1.data.get(sz1-1).get(0) + t2.data.get(sz2-1).get(0);
+            }
+        });
         int length = regionList.size();
         String[] name = new String[length];
         int cnt = 0;
@@ -71,25 +82,49 @@ public class HomeFragment extends Fragment {
             }
             name[cnt] = str;
             int sz = regionList.get(i).data.size();
-            int confirmed = regionList.get(i).data.get(sz-1).get(0);
             cnt += 1; // start from 1
-            entries.add(new BarEntry(cnt, confirmed));
+            confirmedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(0)));
+            //suspectedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(1)));
+            curedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(2)));
+            deadEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(3)));
+            if (cnt == 50){
+                break;
+            }
         }
         Log.i("Count", String.valueOf(cnt));
-        BarDataSet barDataSet = new BarDataSet(entries, "累计确诊");
+        BarDataSet barDataSet = new BarDataSet(confirmedEntry, "确诊");
+        barDataSet.setColor(Color.RED);
+        //BarDataSet barDataSet2 = new BarDataSet(suspectedEntry, "疑似");
+        //barDataSet2.setColor(Color.YELLOW);
+        BarDataSet barDataSet3 = new BarDataSet(curedEntry, "治愈");
+        barDataSet3.setColor(Color.GREEN);
+        BarDataSet barDataSet4 = new BarDataSet(deadEntry, "死亡");
+        barDataSet4.setColor(Color.DKGRAY);
         BarData barData = new BarData(barDataSet);
+        //barData.addDataSet(barDataSet2);
+        barData.addDataSet(barDataSet3);
+        barData.addDataSet(barDataSet4);
         mChart.setData(barData);
+
+        barData.setBarWidth(0.2f);
+        barData.groupBars(1f, 0.6f, 0);
+
         XAxis xAxis = mChart.getXAxis();
+        xAxis.setCenterAxisLabels(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setLabelRotationAngle(45);
         xAxis.setGranularity(1f);
         xAxis.setLabelCount(cnt);
+        xAxis.setSpaceMax(0f);
         xAxis.setTextSize(10f);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(){
             @Override
             public String getFormattedValue(float value) {
-                int index = Math.round(value);
+                int index = (int)Math.ceil(value);
                 System.out.println(index);
+                if (index >= 50){
+                    index = 50;
+                }
                 return name[index-1];
             }
         });
