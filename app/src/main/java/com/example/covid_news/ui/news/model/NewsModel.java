@@ -66,6 +66,7 @@ public class NewsModel implements NewsContract.Model {
                             if (!exist){
                                 dao.addCache(piece, 1);
                             }
+                            newsList.add(piece);
                         }
                         handler.sendEmptyMessage(123);
                     }
