@@ -98,8 +98,6 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
             int idx = userChannelList.get(i).getId();
             mTitles[i] = userChannelList.get(i).getName();
             mFragments[i] = NewsClassFragment.newInstance(idx - 1);
-            System.out.println(idx);
-            System.out.println(mTitles[i]);
         }
         mTabs.setTabMode(TabLayout.MODE_SCROLLABLE);
         mAdapter = new TabPagerAdapter(getChildFragmentManager(), mFragments);
