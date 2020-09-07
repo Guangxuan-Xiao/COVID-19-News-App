@@ -4,14 +4,20 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.example.covid_news.data.News;
 import com.example.covid_news.ui.news.contract.NewsContract;
 import com.example.covid_news.data.DataBase;
 import com.example.covid_news.ui.news.NewsDao;
+import com.example.covid_news.util.NetworkUtil;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.net.URL;
 
 public class NewsModel implements NewsContract.Model {
     private static final DataBase db = new DataBase();
@@ -27,28 +33,53 @@ public class NewsModel implements NewsContract.Model {
 
     @Override
     public void loadData(int type, final NewsContract.OnLoadFirstDataListener listener, int page) {
-        handler = new Handler() {
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == 123) {
-                    listener.onSuccess(newsList);
-                }
-            }
-        };
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                newsList = db.getNewsList(page, 20);
-                for (News piece: newsList){
-                    boolean exist = dao.searchNews(piece.getUrl());
-                    if (!exist){
-                        dao.addCache(piece);
+        boolean connected = NetworkUtil.checkNetworkState(context);
+        if (connected){
+            handler = new Handler() {
+                @Override
+                public void handleMessage(@NonNull Message msg) {
+                    super.handleMessage(msg);
+                    if (msg.what == 123) {
+                        listener.onSuccess(newsList);
                     }
                 }
-                handler.sendEmptyMessage(123);
+            };
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    newsList = db.getNewsList(page, 20);
+                    for (News piece: newsList){
+                        boolean exist = dao.searchNews(piece.getUrl());
+                        if (!exist){
+                            dao.addCache(piece);
+                        }
+                    }
+                    handler.sendEmptyMessage(123);
+                }
+            }).start();
+        }
+        else{
+            newsList = new ArrayList<News>();
+            Toast toast = Toast.makeText(context, "网络连接不可用，加载本地缓存", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+            List<Map<String, String>> newsListFromCache = dao.listCache(null, new String[]{}, page);
+            for (Map<String, String> newsMap: newsListFromCache){
+                News piece = new News();
+                piece.content = newsMap.get("content");
+                piece.title = newsMap.get("title");
+                piece.source = newsMap.get("source");
+                piece.time = newsMap.get("time");
+                try {
+                    piece.urls = new ArrayList<URL>();
+                    piece.urls.add(new URL(newsMap.get("url")));
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                newsList.add(piece);
             }
-        }).start();
+            listener.onSuccess(newsList);
+        }
 
     }
 }

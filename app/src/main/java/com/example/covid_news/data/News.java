@@ -4,12 +4,12 @@ import java.net.URL;
 import java.util.List;
 
 public class News extends Data {
-    private String content;
-    private String date;
-    private String source;
-    private String time;
-    private String title;
-    private List<URL> urls;
+    public String content;
+    public String date;
+    public String source;
+    public String time;
+    public String title;
+    public List<URL> urls;
 
     @Override
     public String toString() {
@@ -47,5 +47,10 @@ public class News extends Data {
         return urls;
     }
 
-    public String getUrl() {return urls.get(0).toString();}
+    public String getUrl() {
+        if (urls.size() == 0){
+            return null;
+        }
+        return urls.get(0).toString();
+    }
 }

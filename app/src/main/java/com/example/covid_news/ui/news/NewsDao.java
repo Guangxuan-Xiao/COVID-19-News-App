@@ -135,13 +135,15 @@ public class NewsDao {
         return map;
     }
 
-    public List<Map<String, String>> listCache(String selection, String[] selectionArgs) {
+    public List<Map<String, String>> listCache(String selection, String[] selectionArgs, int page) {
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         SQLiteDatabase database = null;
         Cursor cursor = null;
+        int offset = page * 20 - 19;
+        String limit = "20 OFFSET " + offset;
         try {
             database = helper.getReadableDatabase();
-            cursor = database.query(false, "news", null, selection, selectionArgs, null, null, null, null);
+            cursor = database.query(false, "news", null, selection, selectionArgs, null, null, "time desc", limit);
             int cols_len = cursor.getColumnCount();
             while (cursor.moveToNext()) {
                 Map<String, String> map = new HashMap<String, String>();
@@ -176,4 +178,10 @@ public class NewsDao {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.execSQL(sql);
     }
+
+//    public void sort(String keyCol, boolean desc){
+//        SQLiteDatabase db = helper.getWritableDatabase();
+//        String mode = desc ? "DESC" : "ASC";
+//        db.execSQL("SELECT * FROM news ORDER BY " + keyCol + " " + mode);
+//    }
 }

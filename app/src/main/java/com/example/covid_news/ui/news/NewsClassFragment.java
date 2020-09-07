@@ -18,6 +18,7 @@ import com.example.covid_news.R;
 import com.example.covid_news.ui.news.contract.NewsContract;
 import com.example.covid_news.ui.news.presenter.NewsPresenter;
 import com.example.covid_news.data.News;
+import com.example.covid_news.util.NetworkUtil;
 import com.example.covid_news.util.PixelUtil;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -49,8 +50,13 @@ class NewsViewHolder extends BaseViewHolder<News> {
     public void setData(final News data) {
         mTitle.setText(data.getTitle());
         NewsDao dao = new NewsDao(context);
-        int visited = Integer.parseInt(dao.viewCache("title=?",
-                new String[]{data.getTitle()}).get("visited"));
+        int visited = 0;
+        try{
+            visited = Integer.parseInt(dao.viewCache("title=?",
+                    new String[]{data.getTitle()}).get("visited"));
+        } catch(Exception e){
+            //do nothing
+        }
         if (visited == 1){
             mTitle.setTextColor(Color.BLUE);
         }
