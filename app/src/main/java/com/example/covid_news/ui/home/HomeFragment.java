@@ -123,7 +123,10 @@ public class HomeFragment extends Fragment {
                 int index = (int)Math.ceil(value);
                 System.out.println(index);
                 if (index >= 50){
-                    index = 50;
+                    index = 49;
+                }
+                if (index < 0){
+                    index = 0;
                 }
                 return name[index-1];
             }
