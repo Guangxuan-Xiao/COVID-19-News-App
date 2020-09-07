@@ -11,11 +11,15 @@
             android:label="@string/menu_news"
             tools:layout="@layout/fragment_news"/>
     <fragment
+            android:id="@+id/nav_expert"
+            android:name="com.example.covid_news.ui.expert.ExpertFragment"
+            android:label="@string/menu_expert"
+            tools:layout="@layout/fragment_expert"/>
+    <fragment
             android:id="@+id/nav_home"
             android:name="com.example.covid_news.ui.home.HomeFragment"
             android:label="@string/menu_home"
             tools:layout="@layout/fragment_home"/>
-
     <fragment
             android:id="@+id/nav_gallery"
             android:name="com.example.covid_news.ui.gallery.GalleryFragment"

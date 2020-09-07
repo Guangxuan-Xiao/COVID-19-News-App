@@ -21,7 +21,7 @@ import java.util.Map;
 import java.net.URL;
 
 public class NewsModel implements NewsContract.Model {
-    private static final DataBase db = new DataBase();
+    private final DataBase db;
     private Context context;
     private NewsDao dao;
     List<News> newsList;
@@ -30,6 +30,7 @@ public class NewsModel implements NewsContract.Model {
     public NewsModel(Context context){
         this.context = context;
         this.dao = new NewsDao(context);
+        db = new DataBase(context);
     }
 
     @Override

@@ -2,8 +2,13 @@ package com.example.covid_news;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import androidx.annotation.NonNull;
+import com.example.covid_news.data.DataBase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -44,6 +49,23 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        Handler handler = new Handler() {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                super.handleMessage(msg);
+                if (msg.what == 123) {
+                    Log.i("Read data", "Region");
+                }
+            }
+        };
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DataBase db = new DataBase(getApplicationContext());
+                db.getRegionList();
+                handler.sendEmptyMessage(123);
+            }
+        }).start();
     }
 
     @Override
