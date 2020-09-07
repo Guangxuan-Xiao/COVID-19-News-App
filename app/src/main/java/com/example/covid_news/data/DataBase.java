@@ -1,16 +1,22 @@
 package com.example.covid_news.data;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 import com.example.covid_news.network.Server;
 
+import java.io.*;
 import java.util.List;
 
 public class DataBase {
     private Parser parser;
     private Server server;
+    private Context context;
 
-    public DataBase() {
+    public DataBase(Context context) {
         parser = new Parser();
         server = new Server();
+        this.context = context;
     }
 
     public List<News> getNewsList(int page, int size) {
@@ -22,6 +28,32 @@ public class DataBase {
     }
 
     public List<Region> getRegionList() {
-        return parser.parseEpidemic(server.getEpidemicJson());
+        File f = new File(context.getFilesDir(), "epidemic.txt");
+        if (!f.exists()){
+            try {
+                FileOutputStream os = new FileOutputStream(f);
+                String str = server.getEpidemicJson();
+                os.write(str.getBytes());
+                Log.i("Get from Internet", "1");
+                return parser.parseEpidemic(str);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Long fileLength = f.length();
+        byte[] fileContent = new byte[fileLength.intValue()];
+        try {
+            FileInputStream is = new FileInputStream(f);
+            is.read(fileContent);
+            is.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String str = new String(fileContent);
+        return parser.parseEpidemic(str);
     }
 }
