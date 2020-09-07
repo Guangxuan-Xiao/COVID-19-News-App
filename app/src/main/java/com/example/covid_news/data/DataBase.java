@@ -21,7 +21,15 @@ public class DataBase {
         return parser.parsePaperList(server.getPaperListJson(page, size));
     }
 
+    public List<Scholar> getScholarList() {
+        return parser.parseScholarList(server.getScholarJson());
+    }
+
     public List<Region> getRegionList() {
         return parser.parseEpidemic(server.getEpidemicJson());
+    }
+
+    public List<Entity> getEntityList(String entity) {
+        return parser.parseEntityList(server.getEntityQueryJson(entity));
     }
 }

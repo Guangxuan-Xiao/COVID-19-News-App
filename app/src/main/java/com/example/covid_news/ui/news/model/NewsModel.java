@@ -60,12 +60,13 @@ public class NewsModel implements NewsContract.Model {
                     }
                     else if (type == 1){
                         List<Paper> paperList = db.getPaperList(page, 20);
+                        newsList = new ArrayL<News>();
                         for (Paper p: paperList){
                             News piece = p.toNews();
                             boolean exist = dao.searchNews(piece.getUrl());
                             if (!exist){
                                 dao.addCache(piece, 1);
-                            }
+                         }
                             newsList.add(piece);
                         }
                         handler.sendEmptyMessage(123);
