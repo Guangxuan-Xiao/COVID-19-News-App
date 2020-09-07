@@ -60,7 +60,7 @@ public class NewsModel implements NewsContract.Model {
                     }
                     else if (type == 1){
                         List<Paper> paperList = db.getPaperList(page, 20);
-                        newsList = new ArrayL<News>();
+                        newsList = new ArrayList<News>();
                         for (Paper p: paperList){
                             News piece = p.toNews();
                             boolean exist = dao.searchNews(piece.getUrl());
