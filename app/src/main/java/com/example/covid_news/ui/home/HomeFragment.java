@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
         int cnt = 0;
         for (int i = 0; i < length; ++i){
             String str = regionList.get(i).name;
-            if (str.contains("|")){
+            if (str.contains("|") || str.contains("World")){
                 continue;
             }
             name[cnt] = str;
