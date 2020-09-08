@@ -45,5 +45,19 @@ public class Parser {
         return regionList;
     }
 
+    public List<Expert> parseExpertList(String json) {
+        JsonObject query = jsonParser.parse(json).getAsJsonObject();
+        Type type = new TypeToken<List<Expert>>() {
+        }.getType();
+        List<Expert> expertList = gson.fromJson(query.getAsJsonArray("data"), type);
+        return expertList;
+    }
 
+    public List<Entity> parseEntityList(String json) {
+        JsonObject query = jsonParser.parse(json).getAsJsonObject();
+        Type type = new TypeToken<List<Entity>>() {
+        }.getType();
+        List<Entity> entityList = gson.fromJson(query.getAsJsonArray("data"), type);
+        return entityList;
+    }
 }

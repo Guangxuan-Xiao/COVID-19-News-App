@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center_vertical"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@android:color/white">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:layout_width="84dp"
+                android:layout_height="match_parent" tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/avatar" android:layout_weight="20"/>
+        <LinearLayout
+                android:layout_width="315dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:orientation="vertical">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:textSize="24sp"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp"
+                    android:id="@+id/name" android:text="钟南山" android:textStyle="bold"/>
+            <TextView
+                    android:id="@+id/position"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:textColor="@android:color/darker_gray"
+                    android:text="中国工程院院士、主任、组长"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

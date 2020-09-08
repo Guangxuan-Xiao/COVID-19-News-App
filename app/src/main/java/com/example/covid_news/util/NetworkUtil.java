@@ -18,9 +18,8 @@ public class NetworkUtil {
             flag = manager.getActiveNetworkInfo().isAvailable();
         }
         if (flag) {
-            setNetwork(context);
+            //setNetwork(context);
         }
-
         return flag;
     }
 

@@ -38,7 +38,7 @@ public class Server {
         return getJsonStr(urlConst.getEpidemicURL());
     }
 
-    public String getScholarJson() {
+    public String getExpertJson() {
         return getJsonStr(urlConst.getScholarURL());
     }
 

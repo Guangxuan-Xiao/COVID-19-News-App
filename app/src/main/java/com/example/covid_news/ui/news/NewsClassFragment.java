@@ -1,6 +1,7 @@
 package com.example.covid_news.ui.news;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -10,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.content.ContentValues;
 
 import androidx.fragment.app.Fragment;
 import com.example.covid_news.R;
 import com.example.covid_news.ui.news.contract.NewsContract;
 import com.example.covid_news.ui.news.presenter.NewsPresenter;
 import com.example.covid_news.data.News;
+import com.example.covid_news.util.NetworkUtil;
 import com.example.covid_news.util.PixelUtil;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -32,19 +35,37 @@ import android.content.Context;
 
 class NewsViewHolder extends BaseViewHolder<News> {
 
+    private Context context;
     private TextView mTitle;
     private TextView mInfo;
 
-    public NewsViewHolder(ViewGroup parent) {
+    public NewsViewHolder(ViewGroup parent, Context context) {
         super(parent,R.layout.news_recycler_item);
         mTitle = $(R.id.news_recycler_title);
         mInfo = $(R.id.news_recycler_info);
+        this.context = context;
     }
 
     @Override
     public void setData(final News data) {
         mTitle.setText(data.getTitle());
-        mInfo.setText(data.getDate() + " 来源：" + data.getSource());
+        NewsDao dao = new NewsDao(context);
+        int visited = 0;
+        try{
+            visited = Integer.parseInt(dao.viewCache("title=?",
+                    new String[]{data.getTitle()}).get("visited"));
+        } catch(Exception e){
+            //do nothing
+        }
+        if (visited == 1){
+            mTitle.setTextColor(Color.BLUE);
+        }
+        if (data.getSource() == null){
+            mInfo.setText(data.getTime());
+        }
+        else {
+            mInfo.setText(data.getTime() + " 来源：" + data.getSource());
+        }
     }
 
 }
@@ -56,13 +77,14 @@ class NewsAdapter extends RecyclerArrayAdapter<News> {
 
     @Override
     public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-        return new NewsViewHolder(parent);
+        return new NewsViewHolder(parent, this.getContext());
     }
 }
 
 public class NewsClassFragment extends Fragment implements NewsContract.View{
     private NewsAdapter adapter;
     private NewsContract.Presenter mPresenter;
+    private NewsDao dao;
 
     private boolean isViewPrepared; // 标识fragment视图已经初始化完毕
     private boolean hasFetchData; // 标识已经触发过懒加载数据
@@ -86,7 +108,6 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         type = getArguments().getInt("type");
-
     }
 
     @Override
@@ -94,8 +115,9 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
         View view = inflater.inflate(R.layout.fragment_news_class, container, false);
         ButterKnife.bind(this, view);
 
-        mPresenter=new NewsPresenter(this,getContext());
+        mPresenter = new NewsPresenter(this,getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        dao = new NewsDao(getContext());
         adapter = new NewsAdapter(getContext());
         recyclerView.setAdapter(adapter);
 
@@ -111,13 +133,11 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
             @Override
             public void onMoreShow() {
                 Log.e("更多","更多");
+                pageIndex += 1;
                 mPresenter.loadData(type,pageIndex);
-                pageIndex=pageIndex+1;
             }
-
             @Override
             public void onMoreClick() {
-
             }
         });
         //写刷新事件
@@ -128,7 +148,7 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
                     @Override
                     public void run() {
                         adapter.clear();
-                        pageIndex = 0;
+                        pageIndex = 1;
                         mPresenter.loadData(type,pageIndex);
                     }
                 }, 1000);
@@ -144,6 +164,11 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
                 data.add(adapter.getAllData().get(position).getContent());
                 data.add(adapter.getAllData().get(position).getDate());
                 data.add(adapter.getAllData().get(position).getSource());
+                data.add(adapter.getAllData().get(position).getUrl());
+                ContentValues values = new ContentValues();
+                values.put("visited", 1);
+                dao.updateCache(values, "title=?",
+                        new String[] {adapter.getAllData().get(position).getTitle()});
                 Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
                 //用Bundle携带数据
                 Bundle bundle = new Bundle();
@@ -152,12 +177,8 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
                 startActivity(intent);
             }
         });
-
-
         isViewPrepared = true;
-
         return view;
-
     }
 
     @Override

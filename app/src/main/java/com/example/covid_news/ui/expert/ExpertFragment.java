@@ -1,35 +1,33 @@
-package com.example.covid_news.ui.news;
+package com.example.covid_news.ui.expert;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ImageView;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.widget.*;
-import com.example.covid_news.MyApplication;
-import com.example.covid_news.ui.channel.ChannelActivity;
-import com.example.covid_news.ui.channel.ChannelItem;
-import com.example.covid_news.ui.channel.ChannelManage;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+import butterknife.ButterKnife;
+import com.example.covid_news.MyApplication;
 import com.example.covid_news.R;
 import com.example.covid_news.ui.base.TabPagerAdapter;
-import com.example.covid_news.ui.news.NewsClassFragment;
-import butterknife.ButterKnife;
+import com.example.covid_news.ui.channel.ChannelActivity;
+import com.example.covid_news.ui.channel.ChannelItem;
+import com.example.covid_news.ui.channel.ChannelManage;
+import com.example.covid_news.ui.expert.ExpertClassFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class NewsFragment extends Fragment implements ViewPager.OnPageChangeListener{
+public class ExpertFragment extends Fragment implements ViewPager.OnPageChangeListener{
 
     private TabLayout mTabs;
     private ViewPager mViewPager;
@@ -37,13 +35,13 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
     private FloatingActionButton fab;
 
     private String[] mTitles;
-    private NewsClassFragment[] mFragments;
+    private ExpertClassFragment[] mFragments;
     private ArrayList<ChannelItem> userChannelList = new ArrayList<ChannelItem>();
     private TabPagerAdapter mAdapter;
     private int currentPosition = 0;
 
-    public static NewsFragment newInstance() {
-        NewsFragment fragment = new NewsFragment();
+    public static ExpertFragment newInstance() {
+        ExpertFragment fragment = new ExpertFragment();
         return fragment;
     }
 
@@ -54,7 +52,7 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news, container, false);
+        View view = inflater.inflate(R.layout.fragment_expert, container, false);
         ButterKnife.bind(this, view);
         mTabs = (TabLayout) view.findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
@@ -93,11 +91,13 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
             }
         });
         mTitles = new String[cnt];
-        mFragments = new NewsClassFragment[cnt];
+        mFragments = new ExpertClassFragment[cnt];
         for (int i = 0; i < cnt; ++i){
             int idx = userChannelList.get(i).getId();
             mTitles[i] = userChannelList.get(i).getName();
-            mFragments[i] = NewsClassFragment.newInstance(idx - 1);
+            mFragments[i] = ExpertClassFragment.newInstance(idx - 1);
+            System.out.println(idx);
+            System.out.println(mTitles[i]);
         }
         mTabs.setTabMode(TabLayout.MODE_SCROLLABLE);
         mAdapter = new TabPagerAdapter(getChildFragmentManager(), mFragments);

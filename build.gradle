@@ -22,6 +22,7 @@ allprojects {
         maven {
             url 'http://maven.aliyun.com/repository/public/'
         }
+        maven { url "https://jitpack.io" }
         maven { url "http://jcenter.bintray.com"}
         google()
         jcenter{ url 'http://jcenter.bintray.com' }
