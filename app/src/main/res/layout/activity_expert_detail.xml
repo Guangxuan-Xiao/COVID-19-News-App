@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" android:id="@+id/appBarLayout">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/collapsing_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        app:contentScrim="?attr/colorPrimary"
+                        app:expandedTitleMarginEnd="64dp"
+                        app:expandedTitleMarginStart="48dp"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:layout_collapseMode="pin"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="192dp">
+                <ImageView
+                        android:layout_width="155dp"
+                        android:layout_height="match_parent" tools:srcCompat="@tools:sample/avatars"
+                        android:id="@+id/avatar"
+                        android:layout_marginStart="16dp"
+                />
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                            android:text="@string/scholar_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp" android:id="@+id/name" android:textSize="36sp"
+                            android:textStyle="bold" android:gravity="center"/>
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:id="@+id/linearLayout2">
+                        <TextView
+                                android:text="中国工程院院士、主任、组长"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp" android:id="@+id/position"
+                                android:textSize="14sp"
+                                android:gravity="center"
+                                tools:layout_conversion_absoluteHeight="46dp" tools:layout_editor_absoluteY="121dp"
+                                tools:layout_editor_absoluteX="171dp"
+                                tools:layout_conversion_absoluteWidth="240dp"/>
+                        <TextView
+                                android:text="国家呼吸系统疾病临床医学研究中心/国家卫健委/广州呼吸疾病研究所"
+                                android:layout_width="match_parent"
+                                android:layout_height="78dp" android:id="@+id/affiliation"
+                                android:textSize="14sp"
+                                android:gravity="center" tools:layout_conversion_absoluteHeight="49dp"
+                                tools:layout_editor_absoluteY="167dp" tools:layout_editor_absoluteX="171dp"
+                                tools:layout_conversion_absoluteWidth="240dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                    android:text="工作经历 "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/experience_title" android:textSize="24sp"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:text="Work Experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/work" android:textSize="18sp"/>
+            <TextView
+                    android:text="教育背景 "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/edu_title" android:textSize="24sp"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:text="Education Background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/edu" android:textSize="18sp"/>
+            <TextView
+                    android:text="个人简介 "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/bio_title" android:textSize="24sp"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:text="Bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/bio" android:textSize="18sp"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

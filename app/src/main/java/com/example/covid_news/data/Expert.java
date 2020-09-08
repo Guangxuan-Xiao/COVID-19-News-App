@@ -3,12 +3,12 @@ package com.example.covid_news.data;
 import java.net.URL;
 import java.util.List;
 
-public class Scholar extends Data {
-    public URL avatar;
+public class Expert extends Data {
+    public String avatar;
     public String name;
     public String name_zh;
 
-    class Indices {
+    public class Indices {
         public float activity;
         public float citation;
         public float diversity;
@@ -37,7 +37,7 @@ public class Scholar extends Data {
 
     public Indices indices;
 
-    class Profile {
+    public class Profile {
         public String address;
         public String affiliation;
         public String affiliation_zh;

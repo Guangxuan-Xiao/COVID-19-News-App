@@ -25,6 +25,7 @@
         </activity>
         <activity android:name =".ui.channel.ChannelActivity"/>
         <activity android:name =".ui.news.NewsDetailsActivity"/>
+        <activity android:name =".ui.expert.ExpertDetailsActivity"/>
         <activity android:name =".ui.channel.GestureDetectorActivity"/>
     </application>
 

@@ -27,7 +27,17 @@ public class DataBase {
         return parser.parsePaperList(server.getPaperListJson(page, size));
     }
 
-    public List<Region> getRegionListFromLocal(){
+    public List<Entity> getEntityList(String entity) {
+        return parser.parseEntityList(server.getEntityQueryJson(entity));
+    }
+
+    public List<Expert> getExpertList() {
+        return parser.parseExpertList(server.getExpertJson());
+    }
+
+
+
+    public List<Region> getRegionListFromLocal() {
         File f = new File(context.getFilesDir(), "epidemic.txt");
         Long fileLength = f.length();
         byte[] fileContent = new byte[fileLength.intValue()];
