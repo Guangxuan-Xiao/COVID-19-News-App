@@ -7,9 +7,73 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
 
-    <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/chart1"
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <TextView
+                    android:text="全球疫情统计"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/globalChart" android:textSize="24sp"
+                    android:textStyle="bold" android:textAlignment="center" android:layout_margin="10dp"
+                    android:layout_marginHorizontal="10dp" android:layout_marginVertical="10dp"
+                    android:layout_marginStart="10dp" android:layout_marginLeft="10dp"/>
+            <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp">
+            </com.github.mikephil.charting.charts.BarChart>
+            <TextView
+                    android:text="中国疫情统计"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/nationalChart" android:textSize="24sp"
+                    android:textStyle="bold" android:textAlignment="center" android:background="#FFFFFF"
+                    android:layout_margin="10dp" android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp" android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"/>
+            <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp">
+            </com.github.mikephil.charting.charts.BarChart>
+            <TextView
+                    android:text="查找具体地区"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/regionalChart" android:textSize="24sp"
+                    android:textStyle="bold" android:textAlignment="center" android:background="#FFFFFF"
+                    android:layout_margin="10dp" android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp" android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <Spinner
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent" android:id="@+id/spin_country"
+                />
+                <Spinner
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent" android:id="@+id/spin_region"
+                />
+                <Spinner
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent" android:id="@+id/spin_city"/>
+                <Button
+                        android:text="查询"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/confirm_button"
+                />
+            </LinearLayout>
+            <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart3"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp">
+            </com.github.mikephil.charting.charts.LineChart>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
