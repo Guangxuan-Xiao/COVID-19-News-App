@@ -23,6 +23,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.*;
 import com.example.covid_news.data.DataBase;
 import com.example.covid_news.data.Region;
@@ -75,6 +76,7 @@ public class HomeFragment extends Fragment {
                 }
                 else{
                     List<String> tmp_list = new ArrayList<String>();
+                    tmp_list.add("");
                     tmp_list.add(strList[1]);
                     region.put(strList[0], tmp_list);
                 }
@@ -87,6 +89,7 @@ public class HomeFragment extends Fragment {
                 }
                 else{
                     List<String> tmp_list = new ArrayList<String>();
+                    tmp_list.add("");
                     tmp_list.add(strList[2]);
                     city.put(strList[1], tmp_list);
                     //System.out.println("new "+strList[1]+ " "+strList[2]);
@@ -203,143 +206,150 @@ public class HomeFragment extends Fragment {
         mChart.setDescription(description);
         mChartNational.setDescription(description);
 
-        List<BarEntry> confirmedEntry = new ArrayList<BarEntry>();
-        //List<BarEntry> suspectedEntry = new ArrayList<BarEntry>();
-        List<BarEntry> curedEntry = new ArrayList<BarEntry>();
-        List<BarEntry> deadEntry = new ArrayList<BarEntry>();
-
-        int length = regionList.size();
-        String[] name = new String[length];
-        int cnt = 0;
-        for (int i = 0; i < length; ++i){
-            String str = regionList.get(i).name;
-            if (str.contains("|") || str.contains("World")){
-                continue;
-            }
-            if (str.contains("United States")){
-                str = "USA";
-            }
-            name[cnt] = str;
-            int sz = regionList.get(i).data.size();
-            cnt += 1; // start from 1
-            confirmedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(0)));
-            //suspectedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(1)));
-            curedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(2)));
-            deadEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(3)));
-            if (cnt == 50){
-                break;
-            }
-        }
-        Log.i("Count", String.valueOf(cnt));
-        BarDataSet barDataSet = new BarDataSet(confirmedEntry, "确诊");
-        barDataSet.setColor(Color.RED);
-        //BarDataSet barDataSet2 = new BarDataSet(suspectedEntry, "疑似");
-        //barDataSet2.setColor(Color.YELLOW);
-        BarDataSet barDataSet3 = new BarDataSet(curedEntry, "治愈");
-        barDataSet3.setColor(Color.GREEN);
-        BarDataSet barDataSet4 = new BarDataSet(deadEntry, "死亡");
-        barDataSet4.setColor(Color.DKGRAY);
-        BarData barData = new BarData(barDataSet);
-        //barData.addDataSet(barDataSet2);
-        barData.addDataSet(barDataSet3);
-        barData.addDataSet(barDataSet4);
-        mChart.setData(barData);
-
-        barData.setBarWidth(0.2f);
-        barData.groupBars(1f, 0.4f, 0);
-
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setCenterAxisLabels(true);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setLabelRotationAngle(45);
-        xAxis.setGranularity(1f);
-        xAxis.setLabelCount(cnt);
-        xAxis.setSpaceMax(0f);
-        xAxis.setTextSize(10f);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(){
+        new Thread(new Runnable() {
             @Override
-            public String getFormattedValue(float value) {
-                int index = (int)Math.ceil(value);
-                System.out.println(index);
-                if (index >= 50){
-                    index = 50;
-                    return "";
-                }
-                if (index < 1){
-                    index = 1;
-                    return "";
-                }
-                return name[index-1];
-            }
-        });
-        barDataSet.setHighlightEnabled(true);
-        mChart.notifyDataSetChanged();
-        mChart.invalidate();
+            public void run() {
+                List<BarEntry> confirmedEntry = new ArrayList<BarEntry>();
+                //List<BarEntry> suspectedEntry = new ArrayList<BarEntry>();
+                List<BarEntry> curedEntry = new ArrayList<BarEntry>();
+                List<BarEntry> deadEntry = new ArrayList<BarEntry>();
 
-        String[] name2 = new String[length];
-        cnt = 0;
-         confirmedEntry = new ArrayList<BarEntry>();
-        curedEntry = new ArrayList<BarEntry>();
-        deadEntry = new ArrayList<BarEntry>();
-        for (int i = 0; i < length; ++i){
-            String str = regionList.get(i).name;
-            if (!str.contains("China|")){
-                continue;
-            }
-            name2[cnt] = str.substring(6);
-            if (name2[cnt].contains("|")){
-                continue;
-            }
-            int sz = regionList.get(i).data.size();
-            cnt += 1; // start from 1
-            confirmedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(0)));
-            curedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(2)));
-            deadEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(3)));
-            if (cnt == 50){
-                break;
-            }
-        }
-        Log.i("Count", String.valueOf(cnt));
-        barDataSet = new BarDataSet(confirmedEntry, "确诊");
-        barDataSet.setColor(Color.RED);
-        barDataSet3 = new BarDataSet(curedEntry, "治愈");
-        barDataSet3.setColor(Color.GREEN);
-        barDataSet4 = new BarDataSet(deadEntry, "死亡");
-        barDataSet4.setColor(Color.GRAY);
-        barData = new BarData(barDataSet);
-        barData.addDataSet(barDataSet3);
-        barData.addDataSet(barDataSet4);
-        mChartNational.setData(barData);
-
-        barData.setBarWidth(0.2f);
-        barData.groupBars(1f, 0.4f, 0);
-
-        xAxis = mChartNational.getXAxis();
-        xAxis.setCenterAxisLabels(true);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setLabelRotationAngle(45);
-        xAxis.setGranularity(1f);
-        xAxis.setLabelCount(cnt);
-        xAxis.setSpaceMax(0f);
-        xAxis.setTextSize(10f);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(){
-            @Override
-            public String getFormattedValue(float value) {
-                int index = (int)Math.ceil(value);
-                if (index >= 50){
-                    index = 50;
-                    return "";
+                int length = regionList.size();
+                String[] name = new String[length];
+                int cnt = 0;
+                for (int i = 0; i < length; ++i){
+                    String str = regionList.get(i).name;
+                    if (str.contains("|") || str.contains("World")){
+                        continue;
+                    }
+                    if (str.contains("United States")){
+                        str = "USA";
+                    }
+                    name[cnt] = str;
+                    int sz = regionList.get(i).data.size();
+                    cnt += 1; // start from 1
+                    confirmedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(0)));
+                    //suspectedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(1)));
+                    curedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(2)));
+                    deadEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(3)));
+                    if (cnt == 50){
+                        break;
+                    }
                 }
-                if (index < 1){
-                    index = 1;
-                    return "";
+                Log.i("Count", String.valueOf(cnt));
+                BarDataSet barDataSet = new BarDataSet(confirmedEntry, "确诊");
+                barDataSet.setColor(Color.RED);
+                //BarDataSet barDataSet2 = new BarDataSet(suspectedEntry, "疑似");
+                //barDataSet2.setColor(Color.YELLOW);
+                BarDataSet barDataSet3 = new BarDataSet(curedEntry, "治愈");
+                barDataSet3.setColor(Color.GREEN);
+                BarDataSet barDataSet4 = new BarDataSet(deadEntry, "死亡");
+                barDataSet4.setColor(Color.DKGRAY);
+                BarData barData = new BarData(barDataSet);
+                //barData.addDataSet(barDataSet2);
+                barData.addDataSet(barDataSet3);
+                barData.addDataSet(barDataSet4);
+                mChart.setData(barData);
+
+                barData.setBarWidth(0.2f);
+                barData.groupBars(1f, 0.4f, 0);
+
+                XAxis xAxis = mChart.getXAxis();
+                xAxis.setCenterAxisLabels(true);
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setLabelRotationAngle(45);
+                xAxis.setGranularity(1f);
+                xAxis.setLabelCount(cnt);
+                xAxis.setSpaceMax(0f);
+                xAxis.setTextSize(10f);
+                xAxis.setValueFormatter(new IndexAxisValueFormatter(){
+                    @Override
+                    public String getFormattedValue(float value) {
+                        int index = (int)Math.ceil(value);
+                        System.out.println(index);
+                        if (index >= 50){
+                            index = 50;
+                            return "";
+                        }
+                        if (index < 1){
+                            index = 1;
+                            return "";
+                        }
+                        return name[index-1];
+                    }
+                });
+                barDataSet.setHighlightEnabled(true);
+                mChart.notifyDataSetChanged();
+                mChart.invalidate();
+
+                String[] name2 = new String[length];
+                cnt = 0;
+                confirmedEntry = new ArrayList<BarEntry>();
+                curedEntry = new ArrayList<BarEntry>();
+                deadEntry = new ArrayList<BarEntry>();
+                for (int i = 0; i < length; ++i){
+                    String str = regionList.get(i).name;
+                    if (!str.contains("China|")){
+                        continue;
+                    }
+                    name2[cnt] = str.substring(6);
+                    if (name2[cnt].contains("|")){
+                        continue;
+                    }
+                    int sz = regionList.get(i).data.size();
+                    cnt += 1; // start from 1
+                    confirmedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(0)));
+                    curedEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(2)));
+                    deadEntry.add(new BarEntry(cnt, regionList.get(i).data.get(sz-1).get(3)));
+                    if (cnt == 50){
+                        break;
+                    }
                 }
-                return name2[index-1];
+                Log.i("Count", String.valueOf(cnt));
+                barDataSet = new BarDataSet(confirmedEntry, "确诊");
+                barDataSet.setColor(Color.RED);
+                barDataSet3 = new BarDataSet(curedEntry, "治愈");
+                barDataSet3.setColor(Color.GREEN);
+                barDataSet4 = new BarDataSet(deadEntry, "死亡");
+                barDataSet4.setColor(Color.GRAY);
+                barData = new BarData(barDataSet);
+                barData.addDataSet(barDataSet3);
+                barData.addDataSet(barDataSet4);
+                mChartNational.setData(barData);
+
+                barData.setBarWidth(0.2f);
+                barData.groupBars(1f, 0.4f, 0);
+
+                xAxis = mChartNational.getXAxis();
+                xAxis.setCenterAxisLabels(true);
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setLabelRotationAngle(45);
+                xAxis.setGranularity(1f);
+                xAxis.setLabelCount(cnt);
+                xAxis.setSpaceMax(0f);
+                xAxis.setTextSize(10f);
+                xAxis.setValueFormatter(new IndexAxisValueFormatter(){
+                    @Override
+                    public String getFormattedValue(float value) {
+                        int index = (int)Math.ceil(value);
+                        if (index >= 50){
+                            index = 50;
+                            return "";
+                        }
+                        if (index < 1){
+                            index = 1;
+                            return "";
+                        }
+                        return name2[index-1];
+                    }
+                });
+                barDataSet.setHighlightEnabled(true);
+                mChartNational.notifyDataSetChanged();
+                mChartNational.invalidate();
             }
-        });
-        barDataSet.setHighlightEnabled(true);
-        mChartNational.notifyDataSetChanged();
-        mChartNational.invalidate();
+        }).start();
+
+
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -350,7 +360,7 @@ public class HomeFragment extends Fragment {
                 System.out.println(str2);
                 String str3 = (String)citySpinner.getSelectedItem();
                 System.out.println(str3);
-                String str = str2 == null ? str1 : str3 == null ?
+                String str = str2 == null || str2 == "" ? str1 : str3 == null || str3 == "" ?
                         str1 + "|" + str2 : str1 + "|" + str2 + "|" + str3;
                 System.out.println("Result: " + str);
                 if (selection_idx.containsKey(str)){
@@ -367,15 +377,26 @@ public class HomeFragment extends Fragment {
                     }
                     LineDataSet dataSet = new LineDataSet(confirmedEntry, "确诊");
                     dataSet.setColor(Color.RED);
-                    LineDataSet dataSet2 = new LineDataSet(confirmedEntry, "治愈");
+                    dataSet.setCircleColor(Color.RED);
+                    dataSet.setFillColor(Color.RED);
+                    dataSet.setDrawFilled(true);
+                    LineDataSet dataSet2 = new LineDataSet(curedEntry, "治愈");
                     dataSet2.setColor(Color.GREEN);
-                    LineDataSet dataSet3 = new LineDataSet(confirmedEntry, "死亡");
+                    dataSet2.setCircleColor(Color.GREEN);
+                    dataSet2.setFillColor(Color.GREEN);
+                    dataSet2.setDrawFilled(true);
+                    LineDataSet dataSet3 = new LineDataSet(deadEntry, "死亡");
                     dataSet3.setColor(Color.GRAY);
+                    dataSet3.setCircleColor(Color.GRAY);
+                    dataSet3.setFillColor(Color.GRAY);
+                    dataSet3.setDrawFilled(true);
                     LineData lineData = new LineData(dataSet);
                     lineData.addDataSet(dataSet2);
                     lineData.addDataSet(dataSet3);
                     XAxis xAxis1 = mChartQuery.getXAxis();
                     xAxis1.setLabelCount(0);
+                    YAxis yAxis = mChartQuery.getAxisLeft();
+                    yAxis.setYOffset(0.0f);
                     mChartQuery.setData(lineData);
                     mChartQuery.invalidate();
                 }

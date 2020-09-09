@@ -1,6 +1,7 @@
 package com.example.covid_news.ui.news;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
 //        info.setText(data.get(2) + "  来源：" + data.get(3));
 //        content.setText(data.get(1));
         toolbar.setTitle("新闻详情");
+        toolbar.setTitleTextColor(Color.WHITE);
 
         setSupportActionBar(toolbar);
 //        设置返回箭头

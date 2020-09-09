@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.*;
@@ -34,6 +37,7 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
     private TabLayout mTabs;
     private ViewPager mViewPager;
     private ImageView mImgView;
+    private SearchView mSearchView;
     private FloatingActionButton fab;
 
     private String[] mTitles;
@@ -60,12 +64,33 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
         mImgView = (ImageView) view.findViewById(R.id.More_Column);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        mSearchView = (SearchView) view.findViewById(R.id.searchEdit);
 
         mImgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent_channel = new Intent(getContext(), ChannelActivity.class);
                 startActivityForResult(intent_channel, 20);
+            }
+        });
+
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query.isEmpty()){
+                    Toast.makeText(getContext(), "请输入搜索内容！", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent(getActivity(), NewsSearchActivity.class);
+                    intent.putExtra("searchText", query);
+                    startActivity(intent);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
 
