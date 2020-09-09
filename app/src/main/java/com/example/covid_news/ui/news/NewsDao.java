@@ -93,7 +93,7 @@ public class NewsDao {
         try {
             database = helper.getReadableDatabase();
             System.out.println(searchText);
-            cursor = database.rawQuery("select * from news where title like ?",
+            cursor = database.rawQuery("select * from news where content like ?",
                     new String[]{"%"+searchText+"%"});
             int cols_len = cursor.getColumnCount();
             while (cursor.moveToNext()) {

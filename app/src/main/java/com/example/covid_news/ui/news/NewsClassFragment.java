@@ -126,6 +126,8 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("data", data);
                 intent.putExtras(bundle);
+                adapter.addAll(new ArrayList<News>());
+                recyclerView.setAdapter(adapter);
                 startActivity(intent);
             }
         });

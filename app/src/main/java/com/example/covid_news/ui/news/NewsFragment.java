@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.*;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.*;
@@ -29,17 +29,22 @@ import com.example.covid_news.ui.base.TabPagerAdapter;
 import com.example.covid_news.ui.news.NewsClassFragment;
 import butterknife.ButterKnife;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class NewsFragment extends Fragment implements ViewPager.OnPageChangeListener{
 
     private TabLayout mTabs;
     private ViewPager mViewPager;
     private ImageView mImgView;
-    private SearchView mSearchView;
+    //private SearchView mSearchView;
+    private Button mButton;
+    private AutoCompleteTextView mSearchView;
     private FloatingActionButton fab;
 
+    private List<String> searchHistory;
     private String[] mTitles;
     private NewsClassFragment[] mFragments;
     private ArrayList<ChannelItem> userChannelList = new ArrayList<ChannelItem>();
@@ -64,7 +69,8 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
         mImgView = (ImageView) view.findViewById(R.id.More_Column);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        mSearchView = (SearchView) view.findViewById(R.id.searchEdit);
+        mSearchView = (AutoCompleteTextView) view.findViewById(R.id.searchEdit);
+        mButton = (Button) view.findViewById(R.id.buttonSearch);
 
         mImgView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,23 +80,127 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
             }
         });
 
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchHistory = new ArrayList<String>();
+
+        File f = new File(getContext().getFilesDir(), "search_history.txt");
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(f));
+            String line = null;
+            while ((line = in.readLine()) != null){
+                searchHistory.add(line);
+            }
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(String.valueOf(searchHistory.size()) + " records of search history");
+
+//        mButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), NewsHistoryActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+//        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                if (query.isEmpty()){
+//                    Toast.makeText(getContext(), "请输入搜索内容！", Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    Intent intent = new Intent(getActivity(), NewsSearchActivity.class);
+//                    intent.putExtra("searchText", query);
+//                    startActivity(intent);
+//                }
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
+
+        ArrayAdapter<String> searchAdapter =
+                new ArrayAdapter<String>(getContext(), R.layout.list_item, searchHistory);
+        mSearchView.setAdapter(searchAdapter);
+        mSearchView.setThreshold(0);
+        mSearchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                if (query.isEmpty()){
+            public void onFocusChange(View view, boolean b) {
+                if (b){
+                    mSearchView.showDropDown();
+                }
+            }
+        });
+
+        mSearchView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEND || i == EditorInfo.IME_ACTION_DONE
+                    || (keyEvent != null && KeyEvent.KEYCODE_ENTER == keyEvent.getKeyCode()
+                        && KeyEvent.ACTION_DOWN == keyEvent.getAction())){
+                    String searchText = mSearchView.getText().toString();
+                    System.out.println("Search: " + searchText);
+                    if (searchText.isEmpty()){
+                        Toast.makeText(getContext(), "请输入搜索内容！", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Intent intent = new Intent(getActivity(), NewsSearchActivity.class);
+                        intent.putExtra("searchText", searchText);
+                        searchHistory.add(searchText);
+                        ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>
+                                (getContext(), R.layout.list_item, searchHistory);
+                        mSearchView.setAdapter(searchAdapter);
+                        try {
+                            FileWriter fw = new FileWriter(new File(getContext().getFilesDir(), "search_history.txt"));
+                            BufferedWriter bw = new BufferedWriter(fw);
+                            bw.write(searchText);
+                            bw.newLine();
+                            bw.close();
+                            System.out.println(String.valueOf(searchHistory.size()) + " records of search history");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        startActivity(intent);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchText = mSearchView.getText().toString();
+                System.out.println("Search: " + searchText);
+                if (searchText.isEmpty()){
                     Toast.makeText(getContext(), "请输入搜索内容！", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Intent intent = new Intent(getActivity(), NewsSearchActivity.class);
-                    intent.putExtra("searchText", query);
+                    intent.putExtra("searchText", searchText);
+                    searchHistory.add(searchText);
+                    ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>
+                                    (getContext(), R.layout.list_item, searchHistory);
+                    mSearchView.setAdapter(searchAdapter);
+                    try {
+                        FileWriter fw = new FileWriter(new File(getContext().getFilesDir(), "search_history.txt"));
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(searchText);
+                        bw.newLine();
+                        bw.close();
+                        System.out.println(String.valueOf(searchHistory.size()) + " records of search history");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     startActivity(intent);
                 }
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
             }
         });
 
@@ -132,28 +242,25 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
         mViewPager.addOnPageChangeListener(this);
     }
 
-    private void showDialog(final Context context){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("是否前去github给个star?");
-        builder.setMessage("给作者一个star表示鼓励");
-        builder.setPositiveButton("前去", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Uri uri = Uri.parse("https://github.com/HuRuWo/YiLan");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
-
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        builder.create();
-        builder.show();
-    }
+//    @Override
+//    public void onDestroy(){
+//        System.out.println(String.valueOf(searchHistory.size()) + " records of search history when destroyed");
+//        try {
+//            FileOutputStream fos = new FileOutputStream(new File(getContext().getFilesDir(), "search_history.txt"));
+//            OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+//            BufferedWriter b = new BufferedWriter(osw);
+//            for (String rec: searchHistory){
+//                b.write(rec + "\n");
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        super.onDestroy();
+//    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

@@ -3,11 +3,13 @@ package com.example.covid_news.ui.news;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +19,7 @@ import com.example.covid_news.R;
 import com.example.covid_news.data.News;
 import com.example.covid_news.ui.news.contract.NewsContract;
 import com.example.covid_news.util.PixelUtil;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
@@ -33,6 +36,10 @@ public class NewsSearchActivity extends AppCompatActivity {
     private NewsDao dao;
     @BindView(R.id.searchResultRecycler)
     EasyRecyclerView mRecyclerView;
+    @BindView(R.id.toolbarNewsSearch)
+    Toolbar mToolbar;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout mCollapsingToolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +51,11 @@ public class NewsSearchActivity extends AppCompatActivity {
         List<News> searchResult = dao.search(searchText);
         mTextView.setText("搜索新闻：" + searchText + "\n共搜索到结果" +
                 String.valueOf(searchResult.size()) + "条");
+        mToolbar.setTitle("新闻搜索");
+        mToolbar.setTitleTextColor(Color.WHITE);
+        mCollapsingToolbar.setTitle("新闻搜索");
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter = new NewsAdapter(this);
         SpaceDecoration itemDecoration = new SpaceDecoration((int) PixelUtil.convertDpToPixel(8, this));

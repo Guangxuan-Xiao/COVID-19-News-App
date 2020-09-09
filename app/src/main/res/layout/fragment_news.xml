@@ -34,12 +34,27 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_marginTop="50dp">
-        <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchEdit"
+
+        <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:queryHint="输入新闻内容搜索">
-        </androidx.appcompat.widget.SearchView>
+                android:layout_height="wrap_content">
+            <AutoCompleteTextView
+                    android:id="@+id/searchEdit"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:completionThreshold="2"
+                    android:hint="输入新闻内容搜索"/>
+            <Button
+                    android:text="搜索"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content" android:id="@+id/buttonSearch" android:layout_weight="1"/>
+        </LinearLayout>
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
