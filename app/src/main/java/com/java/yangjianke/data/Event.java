@@ -8,7 +8,7 @@ import java.util.List;
 public class Event extends Data {
     @SerializedName("_id")
     public String id;
-
+    public int cluster;
     class Entity {
         public String label;
         public URL url;
