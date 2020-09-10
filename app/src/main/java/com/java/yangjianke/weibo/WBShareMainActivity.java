@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.sina.weibo.sdk.demo;
+package com.java.yangjianke.weibo;
 
+import com.java.yangjianke.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

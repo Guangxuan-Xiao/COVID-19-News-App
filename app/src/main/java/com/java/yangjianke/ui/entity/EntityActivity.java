@@ -36,7 +36,6 @@ import java.util.List;
 import java.util.Map;
 
 public class EntityActivity extends AppCompatActivity {
-
     @BindView(R.id.entityResultText)
     TextView mTextView;
     private EntityAdapter adapter;

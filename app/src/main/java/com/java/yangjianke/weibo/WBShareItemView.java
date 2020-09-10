@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.sina.weibo.sdk.demo;
+package com.java.yangjianke.weibo;
 
+import com.java.yangjianke.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -23,11 +24,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.TextView;
+import android.widget.*;
 
 /**
  * 该类简单的封装了分享中，用于显示文字、图片、视频、音乐等内容的组合控件。
@@ -193,14 +190,14 @@ public class WBShareItemView extends LinearLayout {
      * 初始化界面。
      */
     private void initialize(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.share_item_template, this);
-
-        mTitleView      = (TextView)findViewById(R.id.item_title_view);
-        mThumbView      = (ImageView)findViewById(R.id.item_thumb_image_btn);
-        mShareTitleView = (TextView)findViewById(R.id.item_share_title_view);
-        mShareDescView  = (TextView)findViewById(R.id.item_share_desc_view);
-        mShareUrlView   = (TextView)findViewById(R.id.item_share_url_view);
-        mCheckedBtn     = (RadioButton)findViewById(R.id.item_checked_btn);
+//        LayoutInflater.from(context).inflate(R.layout.share_item_template, this);
+//
+//        mTitleView      = (TextView)findViewById(R.id.item_title_view);
+//        mThumbView      = (ImageView)findViewById(R.id.item_thumb_image_btn);
+//        mShareTitleView = (TextView)findViewById(R.id.item_share_title_view);
+//        mShareDescView  = (TextView)findViewById(R.id.item_share_desc_view);
+//        mShareUrlView   = (TextView)findViewById(R.id.item_share_url_view);
+//        mCheckedBtn     = (RadioButton)findViewById(R.id.item_checked_btn);
         
         mCheckedBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

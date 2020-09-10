@@ -14,34 +14,18 @@
  * limitations under the License.
  */
 
-package com.sina.weibo.sdk.demo;
+package com.java.yangjianke.weibo;
 
+import com.java.yangjianke.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.sina.weibo.sdk.api.ImageObject;
-import com.sina.weibo.sdk.api.MusicObject;
-import com.sina.weibo.sdk.api.TextObject;
-import com.sina.weibo.sdk.api.VideoObject;
-import com.sina.weibo.sdk.api.VoiceObject;
-import com.sina.weibo.sdk.api.WebpageObject;
-import com.sina.weibo.sdk.api.WeiboMessage;
-import com.sina.weibo.sdk.api.WeiboMultiMessage;
-import com.sina.weibo.sdk.api.share.BaseRequest;
-import com.sina.weibo.sdk.api.share.IWeiboHandler;
-import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
-import com.sina.weibo.sdk.api.share.ProvideMessageForWeiboResponse;
-import com.sina.weibo.sdk.api.share.ProvideMultiMessageForWeiboResponse;
-import com.sina.weibo.sdk.api.share.WeiboShareSDK;
+import android.widget.*;
+import com.sina.weibo.sdk.api.*;
+import com.sina.weibo.sdk.api.share.*;
 import com.sina.weibo.sdk.utils.Utility;
 
 /**

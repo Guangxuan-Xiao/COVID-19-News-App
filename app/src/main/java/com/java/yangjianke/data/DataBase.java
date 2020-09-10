@@ -35,9 +35,6 @@ public class DataBase {
         return parser.parseExpertList(server.getExpertJson());
     }
 
-    public List<Event> getEventList() {
-        return parser.parseEventList();
-    }
 
     public List<Region> getRegionListFromLocal() {
         File f = new File(context.getFilesDir(), "epidemic.txt");
