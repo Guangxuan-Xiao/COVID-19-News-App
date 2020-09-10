@@ -1,4 +1,4 @@
-package com.example.covid_news;
+package com.java.yangjianke;
 
 import org.junit.Test;
 
