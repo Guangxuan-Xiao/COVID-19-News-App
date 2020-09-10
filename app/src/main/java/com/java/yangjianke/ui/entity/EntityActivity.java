@@ -20,6 +20,7 @@ import com.java.yangjianke.R;
 import com.java.yangjianke.data.DataBase;
 import com.java.yangjianke.data.Entity;
 import com.java.yangjianke.data.News;
+import com.java.yangjianke.data.Relation;
 import com.java.yangjianke.ui.news.NewsAdapter;
 import com.java.yangjianke.ui.news.NewsDao;
 import com.java.yangjianke.ui.news.NewsDetailsActivity;
@@ -29,8 +30,10 @@ import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class EntityActivity extends AppCompatActivity {
 
@@ -98,13 +101,19 @@ public class EntityActivity extends AppCompatActivity {
                 final ArrayList<String> data = new ArrayList<String>();
                 data.add(adapter.getAllData().get(position).label);
                 data.add(adapter.getAllData().get(position).getInfo());
-                data.add(adapter.getAllData().get(position).img.toString());
+                URL url = adapter.getAllData().get(position).img;
+                if (url != null)
+                    data.add(adapter.getAllData().get(position).img.toString());
+                else data.add(null);
                 List<Relation> relations =
                         adapter.getAllData().get(position).getRelations();
+                ArrayList<String> properties =
+                        adapter.getAllData().get(position).getProperties();
                 Intent intent = new Intent(a, EntityDetailActivity.class);
                 //用Bundle携带数据
                 final Bundle bundle = new Bundle();
                 bundle.putStringArrayList("data", data);
+                bundle.putStringArrayList("properties", properties);
                 bundle.putParcelableArrayList("relations", (ArrayList<? extends Parcelable>) relations);
                 intent.putExtras(bundle);
                 startActivity(intent);

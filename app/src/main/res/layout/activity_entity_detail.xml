@@ -31,7 +31,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="?attr/actionBarSize"
                             app:layout_collapseMode="pin"
-                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                        <TextView
+                                android:id="@+id/title_entity_detail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:text="实体详情"
+                                android:textSize="24sp" android:gravity="start"/>
+                    </androidx.appcompat.widget.Toolbar>
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
             </com.google.android.material.appbar.AppBarLayout>
             <LinearLayout
@@ -58,7 +66,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" android:id="@+id/baidu"
                             android:textSize="14sp"
-                            android:gravity="center" tools:layout_conversion_absoluteHeight="49dp"
+                            android:gravity="center|start" tools:layout_conversion_absoluteHeight="49dp"
                             tools:layout_editor_absoluteY="167dp" tools:layout_editor_absoluteX="171dp"
                             tools:layout_conversion_absoluteWidth="240dp"/>
                 </LinearLayout>
@@ -66,7 +74,7 @@
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray" android:layout_margin="5dp"/>
+                    android:background="@android:color/darker_gray" android:layout_margin="10dp"/>
             <TextView
                     android:text="关系"
                     android:layout_width="match_parent"
@@ -78,6 +86,11 @@
                     android:layout_height="200dp">
 
             </com.jude.easyrecyclerview.EasyRecyclerView>
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray" android:layout_margin="10dp"
+                    android:id="@+id/imageView2"/>
             <TextView
                     android:text="属性"
                     android:layout_width="match_parent"
@@ -86,7 +99,7 @@
             <com.jude.easyrecyclerview.EasyRecyclerView
                     android:id="@+id/propertyRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="200dp" android:layout_marginBottom="50dp">
 
             </com.jude.easyrecyclerview.EasyRecyclerView>
         </LinearLayout>

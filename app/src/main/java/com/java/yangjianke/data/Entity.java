@@ -6,8 +6,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Entity extends Data {
@@ -87,5 +89,13 @@ public class Entity extends Data {
 
     public List<Relation> getRelations(){
         return abstractInfo.covid.relations;
+    }
+
+    public ArrayList<String> getProperties(){
+        ArrayList<String> ret = new ArrayList<String>();
+        for (Map.Entry<String, String> p: abstractInfo.covid.properties.entrySet()){
+            ret.add(p.getKey() + "dddddd" + p.getValue());
+        }
+        return ret;
     }
 }
