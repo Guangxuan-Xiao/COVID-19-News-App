@@ -8,7 +8,7 @@ import java.util.List;
 public class Event extends Data {
     @SerializedName("_id")
     public String id;
-    public int cluster;
+    public int community;
     class Entity {
         public String label;
         public URL url;
@@ -43,7 +43,7 @@ public class Event extends Data {
     @SerializedName("seg_text")
     public String segText;
     public String title;
-    public List<URL> urls;
+    public List<String> urls;
 
     @Override
     public String toString() {

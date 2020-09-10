@@ -142,6 +142,7 @@ def plot_communities(G, communities):
 
 def mark_event(events, G, communities):
     final_events = {}
+    events_list = []
     for id, event in enumerate(events):
         if G.has_node(id):
             entities = []
@@ -150,9 +151,12 @@ def mark_event(events, G, communities):
                 entities.append(entity["label"])
             event["entities"] = entities
             final_events[id] = event
+            events_list.append(event)
     print(len(final_events))
     with open("clusterd_events.json", "w") as f:
         json.dump(final_events, f, ensure_ascii=False)
+    with open("events_list.json", "w") as f:
+        json.dump(events_list, f, ensure_ascii=False)
 
 
 def mark_community(community):

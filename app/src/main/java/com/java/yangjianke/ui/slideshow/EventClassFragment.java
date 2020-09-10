@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import com.java.yangjianke.R;
 import com.java.yangjianke.data.Event;
 import com.java.yangjianke.data.News;
+import com.java.yangjianke.data.Parser;
 import com.java.yangjianke.ui.news.NewsAdapter;
 import com.java.yangjianke.ui.news.NewsClassFragment;
 import com.java.yangjianke.ui.news.NewsDao;
@@ -32,16 +33,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EventClassFragment extends Fragment {
 
     private EventAdapter adapter;
+    public List<Event> eventList;
 
-    public static EventClassFragment newInstance(int type) {
+    public static EventClassFragment newInstance(int type, List<Event> events) {
         Bundle bundle = new Bundle();
         EventClassFragment fragment = new EventClassFragment();
         bundle.putInt("type", type);
         fragment.setArguments(bundle);
+        fragment.eventList = events;
         return fragment;
     }
 
@@ -62,6 +66,7 @@ public class EventClassFragment extends Fragment {
         ButterKnife.bind(this, view);
         adapter = new EventAdapter(getContext());
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //添加边框
         SpaceDecoration itemDecoration = new SpaceDecoration((int)PixelUtil.convertDpToPixel(8, getContext()));
@@ -69,23 +74,33 @@ public class EventClassFragment extends Fragment {
         itemDecoration.setPaddingStart(true);
         itemDecoration.setPaddingHeaderFooter(false);
         recyclerView.addItemDecoration(itemDecoration);
-        AssetManager assetManager = getActivity().getAssets();
-        try {
-            InputStream is = assetManager.open("clustered_events.json");
-            String jsonData = readDataFromInputStream(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        adapter.addAll(eventList);
+//        AssetManager assetManager = getActivity().getAssets();
+//        try {
+//            System.out.println("type:" + type);
+//            InputStream is = assetManager.open("events_list.json");
+//            String jsonData = readDataFromInputStream(is);
+//            Parser p = new Parser();
+//            System.out.println("type:" + type);
+//            List<Event> eventList = p.parseEventList(jsonData);
+//            List<Event> eventClassList = new ArrayList<Event>();
+//            for (Event e: eventList){
+//                if (e.community == type){
+//                    eventClassList.add(e);
+//                }
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return view;
     }
 
     public String readDataFromInputStream(InputStream is) {
         BufferedInputStream bis = new BufferedInputStream(is);
 
-        String str = "", s = "";
-
         int c = 0;
         byte[] buf = new byte[64];
+        StringBuilder sb = new StringBuilder();
         while (true) {
             try {
                 c = bis.read(buf);
@@ -97,11 +112,10 @@ public class EventClassFragment extends Fragment {
                 break;
             else {
                 try {
-                    s = new String(buf, 0, c, "UTF-8");
+                    sb.append(new String(buf, 0, c, "UTF-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                str += s;
             }
         }
 
@@ -111,7 +125,7 @@ public class EventClassFragment extends Fragment {
             e.printStackTrace();
         }
 
-        return str;
+        return sb.toString();
     }
 
 

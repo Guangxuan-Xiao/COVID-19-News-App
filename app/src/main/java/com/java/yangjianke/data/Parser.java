@@ -60,4 +60,12 @@ public class Parser {
         List<Entity> entityList = gson.fromJson(query.getAsJsonArray("data"), type);
         return entityList;
     }
+
+    public List<Event> parseEventList(String json) {
+        JsonArray array = jsonParser.parse(json).getAsJsonArray();
+        Type type = new TypeToken<List<Event>>() {
+        }.getType();
+        List<Event> eventList = gson.fromJson(array, type);
+        return eventList;
+    }
 }
