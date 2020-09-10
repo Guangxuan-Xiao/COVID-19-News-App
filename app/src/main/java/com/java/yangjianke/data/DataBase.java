@@ -35,7 +35,6 @@ public class DataBase {
         return parser.parseExpertList(server.getExpertJson());
     }
 
-
     public List<Region> getRegionListFromLocal() {
         File f = new File(context.getFilesDir(), "epidemic.txt");
         Long fileLength = f.length();

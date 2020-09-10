@@ -43,7 +43,7 @@ public class Event extends Data {
     @SerializedName("seg_text")
     public String segText;
     public String title;
-    public List<URL> urls;
+    public List<String> urls;
 
     @Override
     public String toString() {
