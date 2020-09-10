@@ -107,29 +107,6 @@ public class ExpertFragment extends Fragment implements ViewPager.OnPageChangeLi
         mViewPager.addOnPageChangeListener(this);
     }
 
-    private void showDialog(final Context context){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("是否前去github给个star?");
-        builder.setMessage("给作者一个star表示鼓励");
-        builder.setPositiveButton("前去", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Uri uri = Uri.parse("https://github.com/HuRuWo/YiLan");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
-
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        builder.create();
-        builder.show();
-    }
-
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 

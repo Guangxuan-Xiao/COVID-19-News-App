@@ -55,7 +55,8 @@ public class ExpertDetailsActivity extends AppCompatActivity {
         bio.setText(data.get(7));
         toolbar.setTitle("学者详情");
         setSupportActionBar(toolbar);
-//        设置返回箭头        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        设置返回箭头
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

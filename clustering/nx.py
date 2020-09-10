@@ -1,16 +1,18 @@
+from numpy import random as nprand
+import random
+import networkx.algorithms.community as nxcom
+import os
+import pickle
 import networkx as nx
 import json
+import matplotlib as mpl
 import matplotlib.pyplot as plt
-import pickle
-import os
-import networkx.algorithms.community as nxcom
-from networkx.algorithms.community.quality import modularity
-from networkx.utils.mapped_queue import MappedQueue
-import random
-from numpy import random as nprand
+from matplotlib.lines import Line2D
+plt.rcParams['font.family'] = 'Noto Sans CJK SC'
+plt.rcParams['axes.unicode_minus'] = False
 random.seed(123)
 nprand.seed(123)
-plt.rcParams.update(plt.rcParamsDefault)
+# plt.rcParams.update(plt.rcParamsDefault)
 plt.rcParams.update({'figure.figsize': (15, 10)})
 
 
@@ -90,11 +92,22 @@ def community_detection(G, threshold=15):
     return G, communities
 
 
+def get_legend(communities):
+    legend_elements = []
+    labels = [u"临床症状", u"传染模型", u"致病机理",
+                       u"病毒检测", u"国际新闻", u"世卫组织", u"中国力量"]
+    for i in range(0, len(communities)):
+        legend_elements.append(Line2D([0], [0], marker="o", color="w",
+                                      label=labels[i], markerfacecolor=get_color(i+1), markersize=15))
+    return legend_elements
+
+
 def plot_communities(G, communities):
     pos = nx.spring_layout(G, k=0.1)
     # pos = nx.spectral_layout(G)
     plt.rcParams.update(plt.rcParamsDefault)
     plt.rcParams.update({'figure.figsize': (15, 15)})
+    fig, ax = plt.subplots()
     node_color = [get_color(G.nodes[v]['community'])
                   for v in G.nodes]
     # Set community color for internal edges
@@ -121,9 +134,10 @@ def plot_communities(G, communities):
         alpha=0.4,
         with_labels=False)
     plt.tight_layout()
-    plt.legend()
+    plt.legend(handles=get_legend(communities),
+               loc="lower right", prop={'size': 20})
     plt.savefig("nx_communities.png")
-    # plt.show()
+    plt.show()
 
 
 def mark_event(events, G, communities):
