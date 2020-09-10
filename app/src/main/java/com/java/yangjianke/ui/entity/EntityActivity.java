@@ -53,15 +53,15 @@ public class EntityActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entity);
         ButterKnife.bind(this);
         searchText = this.getIntent().getStringExtra("searchText");
-        Handler handler = new Handler() {
+        final Handler handler = new Handler() {
             @SuppressLint("HandlerLeak")
             @Override
-            public void handleMessage(@NonNull Message msg) {
+            public void handleMessage(@NonNull final Message msg) {
                 super.handleMessage(msg);
                 if (msg.what == 123) {
                     Log.i("Read data", "Entity");
@@ -72,7 +72,7 @@ public class EntityActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                DataBase db = new DataBase(getApplicationContext());
+                final DataBase db = new DataBase(getApplicationContext());
                 entityList = db.getEntityList(searchText);
                 handler.sendEmptyMessage(123);
             }
@@ -82,27 +82,27 @@ public class EntityActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter = new EntityAdapter(this);
-        SpaceDecoration itemDecoration = new SpaceDecoration((int) PixelUtil.convertDpToPixel(8, this));
+        final SpaceDecoration itemDecoration = new SpaceDecoration((int) PixelUtil.convertDpToPixel(8, this));
         itemDecoration.setPaddingEdgeSide(true);
         itemDecoration.setPaddingStart(true);
         itemDecoration.setPaddingHeaderFooter(false);
         mRecyclerView.addItemDecoration(itemDecoration);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
-        Activity a = this;
+        final Activity a = this;
 
         adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
-                ArrayList<String> data = new ArrayList<String>();
+            public void onItemClick(final int position) {
+                final ArrayList<String> data = new ArrayList<String>();
                 data.add(adapter.getAllData().get(position).label);
 //                data.add(adapter.getAllData().get(position).abstractInfo);
 //                data.add(adapter.getAllData().get(position).getDate());
 //                data.add(adapter.getAllData().get(position).getSource());
 //                data.add(adapter.getAllData().get(position).getUrl());
-                Intent intent = new Intent(a, NewsDetailsActivity.class);
+                final Intent intent = new Intent(a, NewsDetailsActivity.class);
                 //用Bundle携带数据
-                Bundle bundle = new Bundle();
+                final Bundle bundle = new Bundle();
                 bundle.putStringArrayList("data", data);
                 intent.putExtras(bundle);
                 startActivity(intent);
