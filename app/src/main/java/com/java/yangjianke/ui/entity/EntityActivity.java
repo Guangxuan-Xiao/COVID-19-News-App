@@ -1,5 +1,4 @@
 package com.java.yangjianke.ui.entity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
