@@ -28,8 +28,8 @@ public class NewsDetailsActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.web_text)
     WebView webView;
-    @BindView(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout mCollapsingToolbar;
+    @BindView(R.id.title_detail)
+    TextView mTitle;
 //    @BindView(R.id.Title)
 //    TextView title;
 //    @BindView(R.id.Info)
@@ -52,12 +52,13 @@ public class NewsDetailsActivity extends AppCompatActivity {
 //        content.setText(data.get(1));
         toolbar.setTitle("新闻详情");
         toolbar.setTitleTextColor(Color.WHITE);
-        mCollapsingToolbar.setTitle("新闻详情");
+        mTitle.setText("新闻详情");
 
         setSupportActionBar(toolbar);
 //        设置返回箭头
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("新闻详情");
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

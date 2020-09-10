@@ -5,39 +5,34 @@
                                                  android:layout_height="match_parent"
 >
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
+            android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarNewsDetail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbarNewsDetail"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+            <TextView
+                    android:id="@+id/title_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="675dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <WebView
-                android:id="@+id/web_text"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp" android:textAlignment="center"/>
+        </androidx.appcompat.widget.Toolbar>
+        <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></WebView>
-    </androidx.core.widget.NestedScrollView>
+                android:layout_height="675dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <WebView
+                    android:id="@+id/web_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></WebView>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
