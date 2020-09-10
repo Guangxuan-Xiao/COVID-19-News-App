@@ -35,7 +35,9 @@ public class DataBase {
         return parser.parseExpertList(server.getExpertJson());
     }
 
-
+    public List<Event> getEventList() {
+        return parser.parseEventList();
+    }
 
     public List<Region> getRegionListFromLocal() {
         File f = new File(context.getFilesDir(), "epidemic.txt");
@@ -69,18 +71,18 @@ public class DataBase {
             e.printStackTrace();
         }
         return null;
-//        Long fileLength = f.length();
-//        byte[] fileContent = new byte[fileLength.intValue()];
-//        try {
-//            FileInputStream is = new FileInputStream(f);
-//            is.read(fileContent);
-//            is.close();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        String str = new String(fileContent);
-//        return parser.parseEpidemic(str);
+        // Long fileLength = f.length();
+        // byte[] fileContent = new byte[fileLength.intValue()];
+        // try {
+        // FileInputStream is = new FileInputStream(f);
+        // is.read(fileContent);
+        // is.close();
+        // } catch (FileNotFoundException e) {
+        // e.printStackTrace();
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // }
+        // String str = new String(fileContent);
+        // return parser.parseEpidemic(str);
     }
 }
