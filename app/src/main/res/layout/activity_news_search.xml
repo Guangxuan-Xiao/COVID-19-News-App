@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent"
->
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,22 +21,27 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbarNewsDetail"
+                    android:id="@+id/toolbarNewsSearch"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
+    <TextView
+            android:text="搜索结果："
             android:layout_width="match_parent"
-            android:layout_height="675dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <WebView
-                android:id="@+id/web_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></WebView>
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:layout_height="wrap_content" android:id="@+id/searchResultText" android:textSize="18sp"/>
+    <com.jude.easyrecyclerview.EasyRecyclerView
+            android:id="@+id/searchResultRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:recyclerClipToPadding="true"
+            app:recyclerPadding="8dp"
+            app:recyclerPaddingBottom="8dp"
+            app:recyclerPaddingLeft="8dp"
+            app:recyclerPaddingRight="8dp"
+            app:recyclerPaddingTop="8dp"
+            app:scrollbarStyle="insideOverlay"
+            app:scrollbars="none" />
+</LinearLayout>

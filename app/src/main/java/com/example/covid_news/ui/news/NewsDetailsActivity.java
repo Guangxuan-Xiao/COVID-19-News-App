@@ -1,6 +1,7 @@
 package com.example.covid_news.ui.news;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +24,12 @@ import butterknife.ButterKnife;
 
 public class NewsDetailsActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.toolbarNewsDetail)
     Toolbar toolbar;
     @BindView(R.id.web_text)
     WebView webView;
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout mCollapsingToolbar;
 //    @BindView(R.id.Title)
 //    TextView title;
 //    @BindView(R.id.Info)
@@ -48,10 +51,13 @@ public class NewsDetailsActivity extends AppCompatActivity {
 //        info.setText(data.get(2) + "  来源：" + data.get(3));
 //        content.setText(data.get(1));
         toolbar.setTitle("新闻详情");
+        toolbar.setTitleTextColor(Color.WHITE);
+        mCollapsingToolbar.setTitle("新闻详情");
 
         setSupportActionBar(toolbar);
 //        设置返回箭头
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("新闻详情");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

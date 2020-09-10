@@ -9,6 +9,8 @@ import android.util.Log;
 import com.example.covid_news.db.SQLHelper;
 import com.example.covid_news.data.News;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -82,6 +84,45 @@ public class NewsDao {
             Log.i("Update", count + " visited");
         }
         return flag;
+    }
+
+    public List<News> search(String searchText){
+        List<News> result = new ArrayList<News>();
+        SQLiteDatabase database = null;
+        Cursor cursor = null;
+        try {
+            database = helper.getReadableDatabase();
+            System.out.println(searchText);
+            cursor = database.rawQuery("select * from news where content like ?",
+                    new String[]{"%"+searchText+"%"});
+            int cols_len = cursor.getColumnCount();
+            while (cursor.moveToNext()) {
+                Map<String, String> map = new HashMap<String, String>();
+                for (int i = 0; i < cols_len; i++) {
+                    String cols_name = cursor.getColumnName(i);
+                    String cols_values = cursor.getString(cursor
+                            .getColumnIndex(cols_name));
+                    if (cols_values == null) {
+                        cols_values = "";
+                    }
+                    map.put(cols_name, cols_values);
+                }
+                News piece = new News();
+                piece.content = map.get("content");
+                piece.title = map.get("title");
+                piece.source = map.get("source");
+                piece.time = map.get("time");
+                try {
+                    piece.urls = new ArrayList<URL>();
+                    piece.urls.add(new URL(map.get("url")));
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                result.add(piece);
+            }
+        } catch (Exception e) {
+        }
+        return result;
     }
 
     public boolean searchNews(String str){
