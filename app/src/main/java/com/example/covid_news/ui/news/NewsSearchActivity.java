@@ -38,8 +38,8 @@ public class NewsSearchActivity extends AppCompatActivity {
     EasyRecyclerView mRecyclerView;
     @BindView(R.id.toolbarNewsSearch)
     Toolbar mToolbar;
-    @BindView(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout mCollapsingToolbar;
+    @BindView(R.id.title_search)
+    TextView mTitle;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,9 +51,7 @@ public class NewsSearchActivity extends AppCompatActivity {
         List<News> searchResult = dao.search(searchText);
         mTextView.setText("搜索新闻：" + searchText + "\n共搜索到结果" +
                 String.valueOf(searchResult.size()) + "条");
-        mToolbar.setTitle("新闻搜索");
-        mToolbar.setTitleTextColor(Color.WHITE);
-        mCollapsingToolbar.setTitle("新闻搜索");
+        mTitle.setText("新闻搜索");
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
