@@ -190,7 +190,7 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
                                     (getContext(), R.layout.list_item, searchHistory);
                     mSearchView.setAdapter(searchAdapter);
                     try {
-                        FileWriter fw = new FileWriter(new File(getContext().getFilesDir(), "search_history.txt"));
+                        FileWriter fw = new FileWriter(new File(getContext().getFilesDir(), "search_history.txt"), true);
                         BufferedWriter bw = new BufferedWriter(fw);
                         bw.write(searchText);
                         bw.newLine();

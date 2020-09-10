@@ -10,14 +10,14 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             app:layout_collapseMode="pin"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <TextView
                 android:id="@+id/title_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:text="我是标题"
-                android:textSize="24sp" android:textAlignment="center"/>
+                android:textSize="24sp" android:gravity="start"/>
     </androidx.appcompat.widget.Toolbar>
     <TextView
             android:text="搜索结果："
