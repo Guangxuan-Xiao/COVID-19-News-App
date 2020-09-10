@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.base;
+package com.java.yangjianke.ui.base;
 
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;

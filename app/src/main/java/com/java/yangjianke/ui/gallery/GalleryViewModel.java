@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.gallery;
+package com.java.yangjianke.ui.gallery;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

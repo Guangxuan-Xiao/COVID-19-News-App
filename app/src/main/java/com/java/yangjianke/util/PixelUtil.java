@@ -1,4 +1,4 @@
-package com.example.covid_news.util;
+package com.java.yangjianke.util;
 
 import android.content.Context;
 import android.content.res.Resources;

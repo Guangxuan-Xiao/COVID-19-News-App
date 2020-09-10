@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.news;
+package com.java.yangjianke.ui.news;
 
 import androidx.appcompat.app.AppCompatActivity;
 

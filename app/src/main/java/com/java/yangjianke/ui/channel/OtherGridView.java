@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.channel;
+package com.java.yangjianke.ui.channel;
 
 import android.content.Context;
 import android.util.AttributeSet;

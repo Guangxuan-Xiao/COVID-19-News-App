@@ -1,8 +1,8 @@
-package com.example.covid_news.ui.channel;
+package com.java.yangjianke.ui.channel;
 
 import android.database.SQLException;
 
-import com.example.covid_news.db.SQLHelper;
+import com.java.yangjianke.db.SQLHelper;
 
 import java.util.ArrayList;
 import java.util.List;

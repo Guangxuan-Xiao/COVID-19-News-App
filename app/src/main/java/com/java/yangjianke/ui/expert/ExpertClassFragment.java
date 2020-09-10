@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.expert;
+package com.java.yangjianke.ui.expert;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,13 +17,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.example.covid_news.R;
-import com.example.covid_news.data.Expert;
-import com.example.covid_news.data.Expert;
-import com.example.covid_news.network.DownloadImageTask;
-import com.example.covid_news.ui.expert.contract.ExpertContract;
-import com.example.covid_news.ui.expert.presenter.ExpertPresenter;
-import com.example.covid_news.util.PixelUtil;
+import com.java.yangjianke.R;
+import com.java.yangjianke.data.Expert;
+import com.java.yangjianke.data.Expert;
+import com.java.yangjianke.network.DownloadImageTask;
+import com.java.yangjianke.ui.expert.contract.ExpertContract;
+import com.java.yangjianke.ui.expert.presenter.ExpertPresenter;
+import com.java.yangjianke.util.PixelUtil;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;

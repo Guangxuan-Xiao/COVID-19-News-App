@@ -1,4 +1,4 @@
-package com.example.covid_news.util;
+package com.java.yangjianke.util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.covid_news.R;
+import com.java.yangjianke.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;

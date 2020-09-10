@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.news;
+package com.java.yangjianke.ui.news;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -15,7 +15,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.covid_news.R;
+import com.java.yangjianke.R;
 
 import java.util.ArrayList;
 

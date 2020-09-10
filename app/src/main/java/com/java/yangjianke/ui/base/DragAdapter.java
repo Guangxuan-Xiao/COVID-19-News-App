@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.base;
+package com.java.yangjianke.ui.base;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.covid_news.R;
-import com.example.covid_news.ui.channel.ChannelItem;
+import com.java.yangjianke.R;
+import com.java.yangjianke.ui.channel.ChannelItem;
 
 import java.util.List;
 

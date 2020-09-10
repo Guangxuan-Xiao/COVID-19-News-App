@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.news;
+package com.java.yangjianke.ui.news;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import android.util.Log;
-import com.example.covid_news.db.SQLHelper;
-import com.example.covid_news.data.News;
+import com.java.yangjianke.db.SQLHelper;
+import com.java.yangjianke.data.News;
 
 import java.net.MalformedURLException;
 import java.net.URL;

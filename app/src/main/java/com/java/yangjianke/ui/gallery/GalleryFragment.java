@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.gallery;
+package com.java.yangjianke.ui.gallery;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.example.covid_news.R;
-import com.example.covid_news.ui.entity.EntityActivity;
+import com.java.yangjianke.R;
+import com.java.yangjianke.ui.entity.EntityActivity;
 
 public class GalleryFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.covid_news.gson;
+package com.java.yangjianke.gson;
 
 import java.util.List;
 

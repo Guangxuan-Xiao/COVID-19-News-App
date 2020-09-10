@@ -1,15 +1,15 @@
-package com.example.covid_news.ui.entity;
+package com.java.yangjianke.ui.entity;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.covid_news.R;
-import com.example.covid_news.data.Entity;
-import com.example.covid_news.data.News;
-import com.example.covid_news.network.DownloadImageTask;
-import com.example.covid_news.ui.news.NewsDao;
+import com.java.yangjianke.R;
+import com.java.yangjianke.data.Entity;
+import com.java.yangjianke.data.News;
+import com.java.yangjianke.network.DownloadImageTask;
+import com.java.yangjianke.ui.news.NewsDao;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 public class EntityViewHolder extends BaseViewHolder<Entity> {

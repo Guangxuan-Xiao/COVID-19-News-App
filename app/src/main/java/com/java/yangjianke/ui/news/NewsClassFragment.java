@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.news;
+package com.java.yangjianke.ui.news;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,12 +14,12 @@ import android.widget.TextView;
 import android.content.ContentValues;
 
 import androidx.fragment.app.Fragment;
-import com.example.covid_news.R;
-import com.example.covid_news.ui.news.contract.NewsContract;
-import com.example.covid_news.ui.news.presenter.NewsPresenter;
-import com.example.covid_news.data.News;
-import com.example.covid_news.util.NetworkUtil;
-import com.example.covid_news.util.PixelUtil;
+import com.java.yangjianke.R;
+import com.java.yangjianke.ui.news.contract.NewsContract;
+import com.java.yangjianke.ui.news.presenter.NewsPresenter;
+import com.java.yangjianke.data.News;
+import com.java.yangjianke.util.NetworkUtil;
+import com.java.yangjianke.util.PixelUtil;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.SpaceDecoration;

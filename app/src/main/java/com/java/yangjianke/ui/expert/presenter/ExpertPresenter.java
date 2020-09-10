@@ -1,10 +1,10 @@
-package com.example.covid_news.ui.expert.presenter;
+package com.java.yangjianke.ui.expert.presenter;
 
 import android.content.Context;
-import com.example.covid_news.data.Expert;
-import com.example.covid_news.ui.expert.contract.ExpertContract;
-import com.example.covid_news.ui.expert.model.ExpertModel;
-import com.example.covid_news.util.NetworkUtil;
+import com.java.yangjianke.data.Expert;
+import com.java.yangjianke.ui.expert.contract.ExpertContract;
+import com.java.yangjianke.ui.expert.model.ExpertModel;
+import com.java.yangjianke.util.NetworkUtil;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.home;
+package com.java.yangjianke.ui.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

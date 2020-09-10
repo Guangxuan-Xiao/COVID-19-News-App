@@ -1,11 +1,11 @@
-package com.example.covid_news.ui.news;
+package com.java.yangjianke.ui.news;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.covid_news.R;
-import com.example.covid_news.data.News;
+import com.java.yangjianke.R;
+import com.java.yangjianke.data.News;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 public class NewsViewHolder extends BaseViewHolder<News> {

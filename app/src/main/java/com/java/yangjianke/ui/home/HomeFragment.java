@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.home;
+package com.java.yangjianke.ui.home;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -17,7 +17,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.example.covid_news.R;
+import com.java.yangjianke.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -25,8 +25,8 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.*;
-import com.example.covid_news.data.DataBase;
-import com.example.covid_news.data.Region;
+import com.java.yangjianke.data.DataBase;
+import com.java.yangjianke.data.Region;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 

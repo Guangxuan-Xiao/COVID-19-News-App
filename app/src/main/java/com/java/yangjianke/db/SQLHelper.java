@@ -1,4 +1,4 @@
-package com.example.covid_news.db;
+package com.java.yangjianke.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

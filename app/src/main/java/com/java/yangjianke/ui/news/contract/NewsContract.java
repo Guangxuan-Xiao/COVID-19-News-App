@@ -1,6 +1,6 @@
-package com.example.covid_news.ui.news.contract;
+package com.java.yangjianke.ui.news.contract;
 
-import com.example.covid_news.data.News;
+import com.java.yangjianke.data.News;
 
 import java.util.List;
 

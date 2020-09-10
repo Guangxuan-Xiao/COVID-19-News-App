@@ -1,4 +1,4 @@
-package com.example.covid_news;
+package com.java.yangjianke;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import androidx.annotation.NonNull;
-import com.example.covid_news.data.DataBase;
+import com.java.yangjianke.data.DataBase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;

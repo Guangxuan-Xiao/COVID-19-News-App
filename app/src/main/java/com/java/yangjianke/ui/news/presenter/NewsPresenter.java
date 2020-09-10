@@ -1,12 +1,12 @@
-package com.example.covid_news.ui.news.presenter;
+package com.java.yangjianke.ui.news.presenter;
 
 import android.content.Context;
 
-import com.example.covid_news.gson.NewsGson;
-import com.example.covid_news.data.News;
-import com.example.covid_news.ui.news.contract.NewsContract;
-import com.example.covid_news.ui.news.model.NewsModel;
-import com.example.covid_news.util.NetworkUtil;
+import com.java.yangjianke.gson.NewsGson;
+import com.java.yangjianke.data.News;
+import com.java.yangjianke.ui.news.contract.NewsContract;
+import com.java.yangjianke.ui.news.model.NewsModel;
+import com.java.yangjianke.util.NetworkUtil;
 
 import java.util.List;
 

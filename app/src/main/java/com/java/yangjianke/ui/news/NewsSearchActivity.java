@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.news;
+package com.java.yangjianke.ui.news;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -15,10 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.example.covid_news.R;
-import com.example.covid_news.data.News;
-import com.example.covid_news.ui.news.contract.NewsContract;
-import com.example.covid_news.util.PixelUtil;
+import com.java.yangjianke.R;
+import com.java.yangjianke.data.News;
+import com.java.yangjianke.ui.news.contract.NewsContract;
+import com.java.yangjianke.util.PixelUtil;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;

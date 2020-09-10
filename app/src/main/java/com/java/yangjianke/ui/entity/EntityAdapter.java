@@ -1,8 +1,8 @@
-package com.example.covid_news.ui.entity;
+package com.java.yangjianke.ui.entity;
 
 import android.content.Context;
 import android.view.ViewGroup;
-import com.example.covid_news.data.Entity;
+import com.java.yangjianke.data.Entity;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 

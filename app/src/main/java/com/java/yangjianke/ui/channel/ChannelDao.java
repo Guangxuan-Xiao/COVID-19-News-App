@@ -1,11 +1,11 @@
-package com.example.covid_news.ui.channel;
+package com.java.yangjianke.ui.channel;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.covid_news.db.SQLHelper;
+import com.java.yangjianke.db.SQLHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;

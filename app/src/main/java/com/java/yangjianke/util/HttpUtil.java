@@ -1,4 +1,4 @@
-package com.example.covid_news.util;
+package com.java.yangjianke.util;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.channel;
+package com.java.yangjianke.ui.channel;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,14 +15,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.covid_news.MainActivity;
-import com.example.covid_news.MyApplication;
-import com.example.covid_news.R;
-import com.example.covid_news.ui.base.DragAdapter;
-import com.example.covid_news.ui.base.OtherAdapter;
-import com.example.covid_news.ui.channel.ChannelItem;
-import com.example.covid_news.ui.channel.ChannelManage;
-import com.example.covid_news.ui.news.NewsFragment;
+import com.java.yangjianke.MainActivity;
+import com.java.yangjianke.MyApplication;
+import com.java.yangjianke.R;
+import com.java.yangjianke.ui.base.DragAdapter;
+import com.java.yangjianke.ui.base.OtherAdapter;
+import com.java.yangjianke.ui.channel.ChannelItem;
+import com.java.yangjianke.ui.channel.ChannelManage;
+import com.java.yangjianke.ui.news.NewsFragment;
 
 import java.util.ArrayList;
 

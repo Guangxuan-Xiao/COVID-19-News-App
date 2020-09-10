@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.base;
+package com.java.yangjianke.ui.base;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

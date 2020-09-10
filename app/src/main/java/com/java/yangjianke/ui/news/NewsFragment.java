@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.news;
+package com.java.yangjianke.ui.news;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,10 +13,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.*;
-import com.example.covid_news.MyApplication;
-import com.example.covid_news.ui.channel.ChannelActivity;
-import com.example.covid_news.ui.channel.ChannelItem;
-import com.example.covid_news.ui.channel.ChannelManage;
+import com.java.yangjianke.MyApplication;
+import com.java.yangjianke.ui.channel.ChannelActivity;
+import com.java.yangjianke.ui.channel.ChannelItem;
+import com.java.yangjianke.ui.channel.ChannelManage;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.app.AlertDialog;
@@ -24,9 +24,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
-import com.example.covid_news.R;
-import com.example.covid_news.ui.base.TabPagerAdapter;
-import com.example.covid_news.ui.news.NewsClassFragment;
+import com.java.yangjianke.R;
+import com.java.yangjianke.ui.base.TabPagerAdapter;
+import com.java.yangjianke.ui.news.NewsClassFragment;
 import butterknife.ButterKnife;
 
 import java.io.*;

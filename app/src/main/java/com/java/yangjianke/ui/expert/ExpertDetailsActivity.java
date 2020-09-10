@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.expert;
+package com.java.yangjianke.ui.expert;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.example.covid_news.R;
-import com.example.covid_news.network.DownloadImageTask;
+import com.java.yangjianke.R;
+import com.java.yangjianke.network.DownloadImageTask;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.covid_news.data;
+package com.java.yangjianke.data;
 
 import com.google.gson.annotations.SerializedName;
 

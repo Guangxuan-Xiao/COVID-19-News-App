@@ -1,4 +1,4 @@
-package com.example.covid_news.network;
+package com.java.yangjianke.network;
 
 import android.os.Bundle;
 import android.os.Handler;

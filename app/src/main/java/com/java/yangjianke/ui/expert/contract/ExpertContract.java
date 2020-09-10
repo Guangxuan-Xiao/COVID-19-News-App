@@ -1,7 +1,7 @@
-package com.example.covid_news.ui.expert.contract;
+package com.java.yangjianke.ui.expert.contract;
 
-import com.example.covid_news.data.Expert;
-import com.example.covid_news.data.News;
+import com.java.yangjianke.data.Expert;
+import com.java.yangjianke.data.News;
 
 import java.util.List;
 

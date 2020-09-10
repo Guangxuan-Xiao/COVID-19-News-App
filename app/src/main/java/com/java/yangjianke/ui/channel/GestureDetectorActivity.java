@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.channel;
+package com.java.yangjianke.ui.channel;
 
 import android.app.Activity;
 import android.os.Bundle;

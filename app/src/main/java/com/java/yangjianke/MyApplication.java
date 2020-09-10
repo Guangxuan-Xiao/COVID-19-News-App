@@ -1,8 +1,8 @@
-package com.example.covid_news;
+package com.java.yangjianke;
 
 import android.app.Application;
 
-import com.example.covid_news.db.SQLHelper;
+import com.java.yangjianke.db.SQLHelper;
 
 public class MyApplication extends Application {
 

@@ -50,7 +50,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/colorAccent" />
 
-            <com.example.covid_news.ui.channel.DragGrid
+            <com.java.yangjianke.ui.channel.DragGrid
                 android:id="@+id/userGridView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                 android:layout_marginLeft="10.0dip"
                 android:textSize="14sp" />
 
-            <com.example.covid_news.ui.channel.OtherGridView
+            <com.java.yangjianke.ui.channel.OtherGridView
                 android:id="@+id/otherGridView"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

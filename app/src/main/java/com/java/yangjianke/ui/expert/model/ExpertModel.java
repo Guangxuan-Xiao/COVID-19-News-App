@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.expert.model;
+package com.java.yangjianke.ui.expert.model;
 
 import android.content.Context;
 import android.os.Handler;
@@ -6,12 +6,12 @@ import android.os.Message;
 import android.view.Gravity;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import com.example.covid_news.data.DataBase;
-import com.example.covid_news.data.Expert;
-import com.example.covid_news.data.News;
-import com.example.covid_news.data.Paper;
-import com.example.covid_news.ui.expert.contract.ExpertContract;
-import com.example.covid_news.util.NetworkUtil;
+import com.java.yangjianke.data.DataBase;
+import com.java.yangjianke.data.Expert;
+import com.java.yangjianke.data.News;
+import com.java.yangjianke.data.Paper;
+import com.java.yangjianke.ui.expert.contract.ExpertContract;
+import com.java.yangjianke.util.NetworkUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;

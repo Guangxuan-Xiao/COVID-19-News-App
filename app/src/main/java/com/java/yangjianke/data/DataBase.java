@@ -1,9 +1,9 @@
-package com.example.covid_news.data;
+package com.java.yangjianke.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import com.example.covid_news.network.Server;
+import com.java.yangjianke.network.Server;
 
 import java.io.*;
 import java.util.List;

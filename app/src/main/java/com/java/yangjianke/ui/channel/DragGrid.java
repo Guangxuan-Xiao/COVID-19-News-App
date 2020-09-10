@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.channel;
+package com.java.yangjianke.ui.channel;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,9 +19,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.covid_news.R;
-import com.example.covid_news.util.PixelUtil;
-import com.example.covid_news.ui.base.DragAdapter;
+import com.java.yangjianke.R;
+import com.java.yangjianke.util.PixelUtil;
+import com.java.yangjianke.ui.base.DragAdapter;
 
 /**
  * Description：实现触摸、震动、计算坐标

@@ -1,4 +1,4 @@
-package com.example.covid_news.ui.channel;
+package com.java.yangjianke.ui.channel;
 
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
