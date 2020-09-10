@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.example.covid_news.R;
 import com.example.covid_news.data.DataBase;
 import com.example.covid_news.data.Entity;
 import com.example.covid_news.data.News;
+import com.example.covid_news.data.Relation;
 import com.example.covid_news.ui.news.NewsAdapter;
 import com.example.covid_news.ui.news.NewsDao;
 import com.example.covid_news.ui.news.NewsDetailsActivity;
@@ -97,14 +99,15 @@ public class EntityActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 ArrayList<String> data = new ArrayList<String>();
                 data.add(adapter.getAllData().get(position).label);
-//                data.add(adapter.getAllData().get(position).abstractInfo);
-//                data.add(adapter.getAllData().get(position).getDate());
-//                data.add(adapter.getAllData().get(position).getSource());
-//                data.add(adapter.getAllData().get(position).getUrl());
-                Intent intent = new Intent(a, NewsDetailsActivity.class);
+                data.add(adapter.getAllData().get(position).getInfo());
+                data.add(adapter.getAllData().get(position).img.toString());
+                List<Relation> relations =
+                        adapter.getAllData().get(position).getRelations();
+                Intent intent = new Intent(a, EntityDetailActivity.class);
                 //用Bundle携带数据
                 Bundle bundle = new Bundle();
                 bundle.putStringArrayList("data", data);
+                bundle.putParcelableArrayList("relations", (ArrayList<? extends Parcelable>) relations);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

@@ -28,6 +28,7 @@
         <activity android:name =".ui.news.NewsSearchActivity"/>
         <activity android:name =".ui.news.NewsHistoryActivity"/>
         <activity android:name =".ui.entity.EntityActivity"/>
+        <activity android:name =".ui.entity.EntityDetailActivity"/>
         <activity android:name =".ui.expert.ExpertDetailsActivity"/>
         <activity android:name =".ui.channel.GestureDetectorActivity"/>
     </application>
