@@ -3,6 +3,7 @@ package com.java.yangjianke.ui.news;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import android.util.Log;
@@ -21,6 +22,13 @@ public class NewsDao {
     private SQLHelper helper = null;
 
     public NewsDao(Context context) { helper = new SQLHelper(context); }
+
+    public int getCount(){
+        SQLiteDatabase db = null;
+        db = helper.getReadableDatabase();
+        Long numRows = DatabaseUtils.queryNumEntries(db, "news");
+        return numRows.intValue();
+    }
 
     public boolean addCache(News item, int type) {
         boolean flag = false;
