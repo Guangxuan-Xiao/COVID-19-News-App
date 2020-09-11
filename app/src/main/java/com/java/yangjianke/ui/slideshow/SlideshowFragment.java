@@ -34,8 +34,8 @@ public class SlideshowFragment extends Fragment implements ViewPager.OnPageChang
     private TabLayout mTabs;
     private ViewPager mViewPager;
     private ImageView mImg;
-    private String[] mTitles = {"临床症状", "传染模型", "致病机理", "病毒检测", "国际新闻", "世卫组织", "中国力量"};
-    private EventClassFragment[] mFragments;
+    private String[] mTitles = {"聚类结果", "临床症状", "传染模型", "致病机理", "病毒检测", "国际新闻", "世卫组织", "中国力量"};
+    private Fragment[] mFragments;
     private TabPagerAdapter mAdapter;
     private int currentPosition = 0;
     public List<List<Event>> eventList;
@@ -50,8 +50,6 @@ public class SlideshowFragment extends Fragment implements ViewPager.OnPageChang
         View view = inflater.inflate(R.layout.fragment_slideshow, container, false);
         mTabs = (TabLayout) view.findViewById(R.id.tab_layout_cluster);
         mViewPager = (ViewPager) view.findViewById(R.id.viewPagerCluster);
-        mImg = (ImageView) view.findViewById(R.id.ivImage);
-        mImg.setImageResource(R.drawable.cluster);
 
         int cnt = 7;
         AssetManager assetManager = getActivity().getAssets();
@@ -71,10 +69,10 @@ public class SlideshowFragment extends Fragment implements ViewPager.OnPageChang
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mFragments = new EventClassFragment[cnt];
-//        System.out.println(eventList.size());
+        mFragments = new Fragment[cnt+1];
+        mFragments[0] = new ClusterResultFragment();
         for (int i = 0; i < cnt; ++i){
-            mFragments[i] = EventClassFragment.newInstance(i, eventList.get(i));
+            mFragments[i+1] = EventClassFragment.newInstance(i, eventList.get(i));
         }
         mTabs.setTabMode(TabLayout.MODE_SCROLLABLE);
         mAdapter = new TabPagerAdapter(getChildFragmentManager(), mFragments);

@@ -97,7 +97,7 @@ public class ExpertClassFragment extends Fragment implements ExpertContract.View
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news_class, container, false);
+        View view = inflater.inflate(R.layout.fragment_expert_class, container, false);
         ButterKnife.bind(this, view);
 
         mPresenter = new ExpertPresenter(this, getContext());
@@ -111,6 +111,7 @@ public class ExpertClassFragment extends Fragment implements ExpertContract.View
         itemDecoration.setPaddingStart(true);
         itemDecoration.setPaddingHeaderFooter(false);
         recyclerView.addItemDecoration(itemDecoration);
+        mPresenter.loadData();
 
         //更多加载
         adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
@@ -170,7 +171,18 @@ public class ExpertClassFragment extends Fragment implements ExpertContract.View
 
     @Override
     public void returnData(List<Expert> data) {
-        adapter.addAll(data);
+        if (type == 1){
+            List<Expert> filtered = new ArrayList<Expert>();
+            for (Expert e: data){
+                if (e.is_passedaway){
+                    filtered.add(e);
+                }
+            }
+            adapter.addAll(filtered);
+        }
+        else{
+            adapter.addAll(data);
+        }
         Log.e("adapter", adapter.getAllData().size() + "");
     }
 

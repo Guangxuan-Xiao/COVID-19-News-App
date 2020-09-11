@@ -24,7 +24,12 @@ public class EventViewHolder extends BaseViewHolder<Event> {
 
     @Override
     public void setData(final Event data) {
-        mTitle.setText(data.title);
+        if (data.title.length() <= 40){
+            mTitle.setText(data.title);
+        }
+        else{
+            mTitle.setText(data.title.substring(0, 40) + "......");
+        }
         mInfo.setText(data.date + "  影响力：" + data.influence);
     }
 }
