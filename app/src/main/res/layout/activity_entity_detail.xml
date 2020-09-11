@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                     android:layout_height="match_parent"
+>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" android:id="@+id/appBarLayout">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/collapsing_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        app:contentScrim="?attr/colorPrimary"
+                        app:expandedTitleMarginEnd="64dp"
+                        app:expandedTitleMarginStart="48dp"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbarEntityDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:layout_collapseMode="pin"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                        <TextView
+                                android:id="@+id/title_entity_detail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:text="实体详情"
+                                android:textSize="24sp" android:gravity="start"/>
+                    </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="192dp">
+                <ImageView
+                        android:layout_width="155dp"
+                        android:layout_height="match_parent" tools:srcCompat="@tools:sample/avatars"
+                        android:id="@+id/entity_image"
+                        android:layout_marginStart="16dp"
+                />
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                            android:text="@string/entity_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp" android:id="@+id/entity_name_detail" android:textSize="36sp"
+                            android:textStyle="bold" android:gravity="center"/>
+                    <TextView
+                            android:text="Entity Info"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" android:id="@+id/baidu"
+                            android:textSize="14sp"
+                            android:gravity="center|start" tools:layout_conversion_absoluteHeight="49dp"
+                            tools:layout_editor_absoluteY="167dp" tools:layout_editor_absoluteX="171dp"
+                            tools:layout_conversion_absoluteWidth="240dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray" android:layout_margin="10dp"/>
+            <TextView
+                    android:text="关系"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/entityRelationTitle"
+                    android:textAlignment="center" android:textSize="30sp" android:textStyle="bold"/>
+            <com.jude.easyrecyclerview.EasyRecyclerView
+                    android:id="@+id/relatedEntityRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+            </com.jude.easyrecyclerview.EasyRecyclerView>
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray" android:layout_margin="10dp"
+                    android:id="@+id/imageView2"/>
+            <TextView
+                    android:text="属性"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/entityPropertyTitle"
+                    android:textAlignment="center" android:textSize="30sp" android:textStyle="bold"/>
+            <com.jude.easyrecyclerview.EasyRecyclerView
+                    android:id="@+id/propertyRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" android:layout_marginBottom="50dp">
+
+            </com.jude.easyrecyclerview.EasyRecyclerView>
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.covid_news">
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+          xmlns:tools="http://schemas.android.com/tools" package="com.java.yangjianke">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
             android:usesCleartextTraffic="true"
             android:allowBackup="true"
@@ -23,10 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name =".ui.channel.ChannelActivity"/>
-        <activity android:name =".ui.news.NewsDetailsActivity"/>
-        <activity android:name =".ui.expert.ExpertDetailsActivity"/>
-        <activity android:name =".ui.channel.GestureDetectorActivity"/>
+        <activity android:name=".ui.channel.ChannelActivity"/>
+        <activity android:name=".ui.news.NewsDetailsActivity"/>
+        <activity android:name=".ui.news.NewsSearchActivity"/>
+        <activity android:name=".ui.news.NewsHistoryActivity"/>
+        <activity android:name=".ui.entity.EntityActivity"/>
+        <activity android:name=".ui.entity.EntityDetailActivity"/>
+        <activity android:name=".ui.expert.ExpertDetailsActivity"/>
+        <activity android:name=".ui.channel.GestureDetectorActivity"/>
+        <activity android:name=".weibo.ShareActivity"></activity>
     </application>
-
 </manifest>

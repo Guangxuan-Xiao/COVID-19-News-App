@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.example.covid_news.MainActivity">
+        tools:context="com.java.yangjianke.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -24,25 +24,44 @@
                     android:background="@color/colorPrimary"/>
             <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" app:srcCompat="@drawable/ic_menu_news"
+                    android:layout_height="match_parent" app:srcCompat="@drawable/add"
                     android:id="@+id/More_Column"
                     android:layout_weight="1" android:background="@color/colorPrimary"
-                    android:contentDescription="Add channel"/>
+                    android:contentDescription="Add channel" android:layout_margin="8dp"/>
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"/>
+            android:layout_height="match_parent" android:layout_marginTop="50dp">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <AutoCompleteTextView
+                    android:id="@+id/searchEdit"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:completionThreshold="2"
+                    android:hint="输入新闻内容搜索"/>
+            <Button
+                    android:text="搜索"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content" android:id="@+id/buttonSearch" android:layout_weight="1"/>
+        </LinearLayout>
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

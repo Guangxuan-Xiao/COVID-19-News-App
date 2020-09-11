@@ -6,18 +6,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.slideshow.SlideshowFragment">
-
-    <TextView
-            android:id="@+id/text_slideshow"
+    <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:minHeight="0dp"
+    >
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout_cluster"
+                    app:tabTextColor="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_weight="0.12"
+                    android:background="@color/colorPrimary"/>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerCluster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_marginTop="50dp">
+    </androidx.viewpager.widget.ViewPager>
 </androidx.constraintlayout.widget.ConstraintLayout>
