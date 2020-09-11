@@ -72,6 +72,7 @@ public class SlideshowFragment extends Fragment implements ViewPager.OnPageChang
             e.printStackTrace();
         }
         mFragments = new EventClassFragment[cnt];
+//        System.out.println(eventList.size());
         for (int i = 0; i < cnt; ++i){
             mFragments[i] = EventClassFragment.newInstance(i, eventList.get(i));
         }
