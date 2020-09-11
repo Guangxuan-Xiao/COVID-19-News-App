@@ -156,7 +156,7 @@ def mark_event(events, G, communities):
     with open("clusterd_events.json", "w") as f:
         json.dump(final_events, f, ensure_ascii=False)
     with open("events_list.json", "w") as f:
-        json.dump(events_list, f, ensure_ascii=False)
+        json.dump(events_list, f)
 
 
 def mark_community(community):
