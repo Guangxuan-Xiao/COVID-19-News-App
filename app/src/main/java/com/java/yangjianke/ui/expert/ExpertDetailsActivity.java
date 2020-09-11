@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class ExpertDetailsActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.toolbarExpertDetail)
     Toolbar toolbar;
     @BindView(R.id.avatar)
     ImageView avatar;

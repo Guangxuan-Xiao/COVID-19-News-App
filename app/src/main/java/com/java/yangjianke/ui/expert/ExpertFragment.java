@@ -34,7 +34,7 @@ public class ExpertFragment extends Fragment implements ViewPager.OnPageChangeLi
     private ImageView mImgView;
     private FloatingActionButton fab;
 
-    private String[] mTitles;
+    private String[] mTitles = {"高关注学者", "追忆学者"};
     private ExpertClassFragment[] mFragments;
     private ArrayList<ChannelItem> userChannelList = new ArrayList<ChannelItem>();
     private TabPagerAdapter mAdapter;
@@ -59,14 +59,6 @@ public class ExpertFragment extends Fragment implements ViewPager.OnPageChangeLi
         mImgView = (ImageView) view.findViewById(R.id.More_Column);
         fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-        mImgView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_channel = new Intent(getContext(), ChannelActivity.class);
-                startActivityForResult(intent_channel, 20);
-            }
-        });
-
         setView();
         return view;
     }
@@ -82,22 +74,10 @@ public class ExpertFragment extends Fragment implements ViewPager.OnPageChangeLi
     }
 
     private void setView(){
-        userChannelList = ((ArrayList<ChannelItem>) ChannelManage.getManage(MyApplication.getApp().getSQLHelper()).getUserChannel());
-        int cnt = userChannelList.size();
-        userChannelList.sort(new Comparator<ChannelItem>() {
-            @Override
-            public int compare(ChannelItem t1, ChannelItem t2) {
-                return t1.getOrderId() - t2.getOrderId();
-            }
-        });
-        mTitles = new String[cnt];
+        int cnt = 2;
         mFragments = new ExpertClassFragment[cnt];
         for (int i = 0; i < cnt; ++i){
-            int idx = userChannelList.get(i).getId();
-            mTitles[i] = userChannelList.get(i).getName();
-            mFragments[i] = ExpertClassFragment.newInstance(idx - 1);
-            System.out.println(idx);
-            System.out.println(mTitles[i]);
+            mFragments[i] = ExpertClassFragment.newInstance(i);
         }
         mTabs.setTabMode(TabLayout.MODE_SCROLLABLE);
         mAdapter = new TabPagerAdapter(getChildFragmentManager(), mFragments);
