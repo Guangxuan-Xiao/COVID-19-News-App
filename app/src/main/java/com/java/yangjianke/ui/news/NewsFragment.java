@@ -42,7 +42,6 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
     //private SearchView mSearchView;
     private Button mButton;
     private AutoCompleteTextView mSearchView;
-    private FloatingActionButton fab;
 
     private List<String> searchHistory;
     private String[] mTitles;
@@ -68,7 +67,6 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
         mTabs = (TabLayout) view.findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
         mImgView = (ImageView) view.findViewById(R.id.More_Column);
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
         mSearchView = (AutoCompleteTextView) view.findViewById(R.id.searchEdit);
         mButton = (Button) view.findViewById(R.id.buttonSearch);
 

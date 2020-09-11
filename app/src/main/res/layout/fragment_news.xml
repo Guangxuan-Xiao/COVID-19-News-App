@@ -24,10 +24,10 @@
                     android:background="@color/colorPrimary"/>
             <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" app:srcCompat="@drawable/ic_menu_news"
+                    android:layout_height="match_parent" app:srcCompat="@drawable/add"
                     android:id="@+id/More_Column"
                     android:layout_weight="1" android:background="@color/colorPrimary"
-                    android:contentDescription="Add channel"/>
+                    android:contentDescription="Add channel" android:layout_margin="8dp"/>
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <LinearLayout
@@ -62,12 +62,6 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
     </LinearLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

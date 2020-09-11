@@ -32,7 +32,6 @@ public class ExpertFragment extends Fragment implements ViewPager.OnPageChangeLi
     private TabLayout mTabs;
     private ViewPager mViewPager;
     private ImageView mImgView;
-    private FloatingActionButton fab;
 
     private String[] mTitles = {"高关注学者", "追忆学者"};
     private ExpertClassFragment[] mFragments;
@@ -57,7 +56,6 @@ public class ExpertFragment extends Fragment implements ViewPager.OnPageChangeLi
         mTabs = (TabLayout) view.findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
         mImgView = (ImageView) view.findViewById(R.id.More_Column);
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
         setView();
         return view;

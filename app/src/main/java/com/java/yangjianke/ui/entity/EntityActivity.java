@@ -1,4 +1,5 @@
 package com.java.yangjianke.ui.entity;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
@@ -8,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,7 +51,7 @@ public class EntityActivity extends AppCompatActivity {
 
     List<Entity> entityList;
 
-    public void returnData(){
+    public void returnData() {
         mTextView.setText("搜索实体：" + searchText + "\n共搜索到结果" +
                 String.valueOf(entityList.size()) + "条");
         adapter.addAll(entityList);
@@ -82,6 +84,12 @@ public class EntityActivity extends AppCompatActivity {
         }).start();
         mTitle.setText("实体搜索");
         setSupportActionBar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter = new EntityAdapter(this);

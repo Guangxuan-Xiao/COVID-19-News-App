@@ -103,7 +103,11 @@ public class ShareActivity extends Activity implements WbShareCallback { //View.
         text = "在使用新冠疫情新闻APP看新闻！\n" +
                 "这条新闻的内容是： " + content + "\n" +
                 "URL: " + url;
-        textObject.text = text.substring(0, 240);
+        if (text.length() >= 200) {
+            textObject.text = text.substring(0, 200);
+        } else {
+            textObject.text = text;
+        }
         message.textObject = textObject;
 //        }
 
