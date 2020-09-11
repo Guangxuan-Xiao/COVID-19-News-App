@@ -48,7 +48,13 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
         NewsClassFragment fragment = new NewsClassFragment();
         bundle.putInt("type", type);
         fragment.setArguments(bundle);
+        fragment.setType(type);
+        System.out.println("11111 "+type);
         return fragment;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     @BindView(R.id.recyclerView)
@@ -60,6 +66,7 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         type = getArguments().getInt("type");
+        System.out.println("News type when created: " + type);
     }
 
     @Override
@@ -72,6 +79,8 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
         dao = new NewsDao(getContext());
         adapter = new NewsAdapter(getContext());
         recyclerView.setAdapter(adapter);
+        type = getArguments().getInt("type");
+        System.out.println("News type when view created: " + type);
 
         //添加边框
         SpaceDecoration itemDecoration = new SpaceDecoration((int)PixelUtil.convertDpToPixel(8, getContext()));
@@ -101,6 +110,7 @@ public class NewsClassFragment extends Fragment implements NewsContract.View{
                     public void run() {
                         adapter.clear();
                         pageIndex = 1;
+                        System.out.println("News type: " + type);
                         mPresenter.loadData(type,pageIndex);
                     }
                 }, 1000);

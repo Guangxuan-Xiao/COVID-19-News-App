@@ -30,9 +30,7 @@ import com.java.yangjianke.ui.news.NewsClassFragment;
 import butterknife.ButterKnife;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class NewsFragment extends Fragment implements ViewPager.OnPageChangeListener{
 
@@ -43,7 +41,7 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
     private Button mButton;
     private AutoCompleteTextView mSearchView;
 
-    private List<String> searchHistory;
+    private Set<String> searchHistory;
     private String[] mTitles;
     private NewsClassFragment[] mFragments;
     private ArrayList<ChannelItem> userChannelList = new ArrayList<ChannelItem>();
@@ -78,7 +76,7 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
             }
         });
 
-        searchHistory = new ArrayList<String>();
+        searchHistory = new HashSet<String>();
 
         File f = new File(getContext().getFilesDir(), "search_history.txt");
         try {
@@ -95,36 +93,9 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
         }
         System.out.println(String.valueOf(searchHistory.size()) + " records of search history");
 
-//        mButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), NewsHistoryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                if (query.isEmpty()){
-//                    Toast.makeText(getContext(), "请输入搜索内容！", Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-//                    Intent intent = new Intent(getActivity(), NewsSearchActivity.class);
-//                    intent.putExtra("searchText", query);
-//                    startActivity(intent);
-//                }
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                return false;
-//            }
-//        });
-
+        List<String> searchHistoryList = new ArrayList<String>(searchHistory);
         ArrayAdapter<String> searchAdapter =
-                new ArrayAdapter<String>(getContext(), R.layout.list_item, searchHistory);
+                new ArrayAdapter<String>(getContext(), R.layout.list_item, searchHistoryList);
         mSearchView.setAdapter(searchAdapter);
         mSearchView.setThreshold(0);
         mSearchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -151,8 +122,9 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
                         Intent intent = new Intent(getActivity(), NewsSearchActivity.class);
                         intent.putExtra("searchText", searchText);
                         searchHistory.add(searchText);
-                        ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>
-                                (getContext(), R.layout.list_item, searchHistory);
+                        List<String> searchHistoryList = new ArrayList<String>(searchHistory);
+                        ArrayAdapter<String> searchAdapter =
+                                new ArrayAdapter<String>(getContext(), R.layout.list_item, searchHistoryList);
                         mSearchView.setAdapter(searchAdapter);
                         try {
                             FileWriter fw = new FileWriter(new File(getContext().getFilesDir(), "search_history.txt"));
@@ -184,8 +156,9 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
                     Intent intent = new Intent(getActivity(), NewsSearchActivity.class);
                     intent.putExtra("searchText", searchText);
                     searchHistory.add(searchText);
-                    ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>
-                                    (getContext(), R.layout.list_item, searchHistory);
+                    List<String> searchHistoryList = new ArrayList<String>(searchHistory);
+                    ArrayAdapter<String> searchAdapter =
+                            new ArrayAdapter<String>(getContext(), R.layout.list_item, searchHistoryList);
                     mSearchView.setAdapter(searchAdapter);
                     try {
                         FileWriter fw = new FileWriter(new File(getContext().getFilesDir(), "search_history.txt"), true);
@@ -229,6 +202,7 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
         mFragments = new NewsClassFragment[cnt];
         for (int i = 0; i < cnt; ++i){
             int idx = userChannelList.get(i).getId();
+            System.out.println("Current index: " + idx);
             mTitles[i] = userChannelList.get(i).getName();
             mFragments[i] = NewsClassFragment.newInstance(idx - 1);
         }
@@ -240,25 +214,6 @@ public class NewsFragment extends Fragment implements ViewPager.OnPageChangeList
         mViewPager.addOnPageChangeListener(this);
     }
 
-//    @Override
-//    public void onDestroy(){
-//        System.out.println(String.valueOf(searchHistory.size()) + " records of search history when destroyed");
-//        try {
-//            FileOutputStream fos = new FileOutputStream(new File(getContext().getFilesDir(), "search_history.txt"));
-//            OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
-//            BufferedWriter b = new BufferedWriter(osw);
-//            for (String rec: searchHistory){
-//                b.write(rec + "\n");
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        super.onDestroy();
-//    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
